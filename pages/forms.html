@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Inscrição</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+  <!-- CSS global -->
+  <link rel="stylesheet" href="../assets/css/forms.css">
+  <link rel="stylesheet" href="../assets/css/global.css">
+
+  <!-- JS -->
+  <script src="../js/forms.js" defer></script>
+</head>
+<body>
+  <div class="position-absolute top-0 end-0 p-3 top-right-controls">
+    <label class="switch">
+      <input type="checkbox" id="darkModeToggle">
+      <span class="slider round"></span>
+    </label>
+    <select id="languageSelect" class="form-select form-select-sm">
+      <option value="pt">Português</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+  <div class="container py-4" style="max-width: 800px;">
+    <div class="justify-content-center rounded-3 p-2">
+      <div class="col-md-10 w-100">
+        <!-- Botão Voltar -->
+        <div class="mb-1" style="color: white;">
+          <a href="/index.html" class="btn btn-back" data-translate="backButton" style="background-color: #ff4d1c;">
+            <i class="bi bi-arrow-left me-1"></i> Voltar
+          </a>
+        </div>
+
+        <!-- Título e Subtítulo -->
+        <div class="mb-4">
+          <h1 class="fs-2 fw-semibold" data-translate="formTitle" style="color: white;">Formulário de inscrição</h1>
+          <p class="" data-translate="formSubtitle" style="color: white;">Preencha os dados abaixo para fazer sua inscrição no Programa Trilhas.</p>
+        </div>
+
+      
+        <!-- Formulário dentro de um Card -->
+        <div class="card shadow-sm border-1 p-1">
+          <div class="card-body">
+            <form>
+              <h2 class="fs-5 fw-medium mb-3" data-translate="participantInfo">Informações do participante</h2>
+              <!-- Nome completo -->
+              <div class="mb-3">
+                <label for="nome" class="form-label" data-translate="fullName">Nome completo</label>
+                <input type="text" class="form-control" id="nome">
+              </div>
+              <!-- Data de nascimento -->
+              <div class="mb-3">
+                <label for="dataNascimento" class="form-label" data-translate="birthDate">Data de nascimento</label>
+                <input type="date" class="form-control" id="dataNascimento">
+              </div>
+              <!-- CPF -->
+              <div class="mb-3">
+                <label for="cpf" class="form-label" data-translate="cpf">CPF</label>
+                <input type="text" class="form-control" id="cpf">
+              </div>
+              <!-- Sexo -->
+              <div class="mb-3">
+                <label for="sexo" class="form-label" data-translate="gender">Sexo</label>
+                <select class="form-select" id="sexo">
+                    <option value="" selected disabled>Selecione...</option>
+                    <option value="Feminino" data-translate="female">Feminino</option>
+                    <option value="Masculino" data-translate="male">Masculino</option>
+                    <option value="Outro" data-translate="other">Outro</option>
+                    <option value="Prefiro não informar" data-translate="preferNotToSay">Prefiro não informar</option>
+                </select>
+            </div>
+            
+              <!-- E-mail -->
+              <div class="mb-3">
+                <label for="email" class="form-label" data-translate="email">E-mail</label>
+                <input type="email" class="form-control" id="email">
+              </div>
+              <!-- Telefone -->
+              <div class="mb-3">
+                <label for="telefone" class="form-label" data-translate="phone">Telefone</label>
+                <input type="text" class="form-control" id="telefone">
+              </div>
+              <!-- Documento de Identidade -->
+              <div class="mb-4">
+                <label for="documento" class="form-label" data-translate="identityDocument">Documento de identidade</label>
+                <div class="border rounded p-4 text-center" style="border-style: dashed !important;">
+                  <i class="bi bi-cloud-upload fs-3 text-secondary mb-2"></i>
+                  <div>
+                    <label for="documento" class="text-secondary" style="cursor: pointer;" data-translate="clickToSelect">
+                      Clique aqui para<br>selecionar o arquivo
+                    </label>
+                    <input type="file" class="d-none" id="documento">
+                  </div>
+                </div>
+              </div>
+              <!-- Endereço Residencial -->
+              <div class="mb-4">
+                <h2 class="fs-5 fw-medium mb-3" data-translate="residentialAddress">Endereço residencial</h2>
+                <!-- CEP -->
+                <div class="mb-3">
+                  <label for="cep" class="form-label" data-translate="zipCode">CEP</label>
+                  <input type="text" class="form-control" id="cep" placeholder="00000-000">
+                  <div class="invalid-feedback">
+                      Por favor, insira um CEP válido
+                  </div>
+                </div>
+                <!-- Rua e Número na mesma linha -->
+                <div class="row mb-3">
+                  <div class="col-md-8">
+                    <label for="rua" class="form-label" data-translate="street">Rua</label>
+                    <input type="text" class="form-control" id="rua">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="numero" class="form-label" data-translate="number">Número</label>
+                    <input type="text" class="form-control" id="numero">
+                  </div>
+                </div>
+                <!-- Cidade e Estado na mesma linha -->
+                <div class="row mb-3">
+                  <div class="col-md-8">
+                    <label for="cidade" class="form-label" data-translate="city">Cidade</label>
+                    <input type="text" class="form-control" id="cidade">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="estado" class="form-label" data-translate="state">Estado</label>
+                    <input type="text" class="form-control" id="estado">
+                  </div>
+                </div>
+              </div>
+              <!-- Comprovante de Residência -->
+              <div class="mb-4">
+                <label for="comprovante" class="form-label" data-translate="residenceProof">Comprovante de residência</label>
+                <div class="border rounded p-4 text-center" style="border-style: dashed !important;">
+                  <i class="bi bi-cloud-upload fs-3 text-secondary mb-2"></i>
+                  <div>
+                    <label for="comprovante" class="text-secondary" style="cursor: pointer;" data-translate="clickToSelect">
+                      Clique aqui para<br>selecionar o arquivo
+                    </label>
+                    <input type="file" class="d-none" id="comprovante">
+                  </div>
+                </div>
+              </div>
+              <!-- Trilhas de Aprendizagem -->
+              <div class="mb-4">
+                <h2 class="fs-5 fw-medium mb-2" data-translate="learningTracks">Trilhas de apredizagem</h2>
+                <p class="text-secondary mb-3" data-translate="selectOneTrack">Selecione apenas uma trilha</p>
+                <div class="row g-3">
+                  <!-- Card Programação Front-end -->
+                  <div class="col-md-6">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <div class="form-check d-flex align-items-center gap-3">
+                          <input class="form-check-input" type="radio" name="trilha" id="frontend">
+                          <label class="form-check-label w-100" for="frontend">
+                            <div class="text-center">
+                              <i class="bi bi-code-square fs-4 mb-2"></i>
+                              <p class="mb-0" data-translate="frontend">Programação Front-end</p>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Card Programação Back-end -->
+                  <div class="col-md-6">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <div class="form-check d-flex align-items-center gap-3">
+                          <input class="form-check-input" type="radio" name="trilha" id="backend">
+                          <label class="form-check-label w-100" for="backend">
+                            <div class="text-center">
+                              <i class="bi bi-terminal fs-4 mb-2"></i>
+                              <p class="mb-0" data-translate="backend">Programação Back-end</p>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Card Programação de Jogos -->
+                  <div class="col-md-6">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <div class="form-check d-flex align-items-center gap-3">
+                          <input class="form-check-input" type="radio" name="trilha" id="jogos">
+                          <label class="form-check-label w-100" for="jogos">
+                            <div class="text-center">
+                              <i class="bi bi-controller fs-4 mb-2"></i>
+                              <p class="mb-0" data-translate="gameProgramming">Programação de Jogos</p>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Card Design e Experiência -->
+                  <div class="col-md-6">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <div class="form-check d-flex align-items-center gap-3">
+                          <input class="form-check-input" type="radio" name="trilha" id="design">
+                          <label class="form-check-label w-100" for="design">
+                            <div class="text-center">
+                              <i class="bi bi-palette fs-4 mb-2"></i>
+                              <p class="mb-0" data-translate="designExperience">Design e Experiência</p>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Card Ciência de Dados -->
+                  <div class="col-md-6">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <div class="form-check d-flex align-items-center gap-3">
+                          <input class="form-check-input" type="radio" name="trilha" id="dados">
+                          <label class="form-check-label w-100" for="dados">
+                            <div class="text-center">
+                              <i class="bi bi-graph-up fs-4 mb-2"></i>
+                              <p class="mb-0" data-translate="dataScience">Ciência de Dados</p>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Termos e Condições -->
+              <div class="mb-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="termos">
+                  <label class="form-check-label" for="termos" data-translate="termsConditions">
+                    Declaro que li e concordo com os <a href="#" style="color: #ff4d1c; text-decoration: none;">Termos e Condições</a> e com a <a href="#" style="color: #ff4d1c; text-decoration: none;">Política de Privacidade</a>.
+                  </label>
+                </div>
+              </div>
+              <!-- Botões -->
+              <div class="d-flex gap-3 justify-content-end">
+                <button type="button" class="btn btn-outline-secondary px-4" data-translate="cancel">Cancelar</button>
+                <button type="submit" class="btn px-4" style="background-color: #ff4d1c; color: white;" data-translate="submit">Fazer inscrição</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal de Erro -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Erro no preenchimento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Aqui os erros serão inseridos dinamicamente -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Bootstrap JS (opcional, apenas se você precisar de componentes interativos do Bootstrap) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
