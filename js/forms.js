@@ -118,97 +118,101 @@ function updateTranslations(language, translations) {
 //Função para validar o formulário// Função para validar o formulário
 // Função para validar o formulário
 function functionFormValidation() {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex para validar e-mail
-
-  document.querySelector('form').addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      const requiredFields = [
-          { id: 'nome', label: 'Nome completo' },
-          { id: 'dataNascimento', label: 'Data de nascimento' },
-          { id: 'cpf', label: 'CPF' },
-          { id: 'email', label: 'E-mail' },
-          { id: 'telefone', label: 'Telefone' },
-          { id: 'sexo', label: 'Sexo' },
-          { id: 'documento', label: 'Documento de identidade', type: 'file' },
-          { id: 'cep', label: 'CEP' },
-          { id: 'rua', label: 'Rua' },
-          { id: 'cidade', label: 'Cidade' },
-          { id: 'estado', label: 'Estado' },
-          { id: 'comprovante', label: 'Comprovante de residência', type: 'file' } 
-      ];
-
-      let missingFields = [];
-      let invalidEmail = false;
-
-      requiredFields.forEach(field => {
-          const input = document.getElementById(field.id);
-          const value = input.value.trim();
-          
-          // Validação geral dos campos obrigatórios
-          if (value === '') {
-              missingFields.push(`<li>${field.label}</li>`);
-              input.classList.add('is-invalid');
-          } else {
-              input.classList.remove('is-invalid');
-          }
-
-          // Validação específica para e-mail
-          if (field.id === 'email' && value !== '') {
-              if (!emailRegex.test(value)) {
-                  invalidEmail = true;
-                  input.classList.add('is-invalid');
-              }
-          }
-      });
-
-      // Validação dos termos
-      const termsAccepted = document.getElementById('termos').checked;
-      const termsError = !termsAccepted ? '<li>Aceite os termos e condições</li>' : '';
-
-      // Montagem da mensagem de erro
-      let errorMessage = '';
-      if (missingFields.length > 0 || invalidEmail || !termsAccepted) {
-          errorMessage += '<ul>';
-          
-          if (missingFields.length > 0) {
-              errorMessage += `<p>Campos obrigatórios não preenchidos:</p>${missingFields.join('')}`;
-          }
-          
-          if (invalidEmail) {
-              errorMessage += '<li>E-mail inválido</li>';
-              document.getElementById('email').classList.add('is-invalid');
-          }
-          
-          if (termsError) {
-              errorMessage += termsError;
-          }
-          
-          errorMessage += '</ul>';
-      }
-
-      // Exibe o modal com os erros ou redireciona
-      if (errorMessage) {
-          document.getElementById('modalBody').innerHTML = errorMessage;
-          new bootstrap.Modal(document.getElementById('errorModal')).show();
-      } else {
-          window.location.href = 'success.html';
-      }
-  });
-
-  // Remove a validação quando o usuário digitar
-  document.querySelectorAll("input, select").forEach((input) => {
-      input.addEventListener("input", () => {
-          input.classList.remove("is-invalid");
-          // Validação em tempo real para e-mail
-          if (input.id === 'email' && input.value.trim() !== '') {
-              if (!emailRegex.test(input.value)) {
-                  input.classList.add('is-invalid');
-              }
-          }
-      });
-  });
-}
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex para validar e-mail
+  
+    document.querySelector('form').addEventListener('submit', (event) => {
+        event.preventDefault();
+  
+        const requiredFields = [
+            { id: 'nome', label: 'Nome completo' },
+            { id: 'dataNascimento', label: 'Data de nascimento' },
+            { id: 'cpf', label: 'CPF' },
+            { id: 'email', label: 'E-mail' },
+            { id: 'telefone', label: 'Telefone' },
+            { id: 'sexo', label: 'Sexo' },
+            { id: 'documento', label: 'Documento de identidade', type: 'file' },
+            { id: 'cep', label: 'CEP' },
+            { id: 'rua', label: 'Rua' },
+            { id: 'cidade', label: 'Cidade' },
+            { id: 'estado', label: 'Estado' },
+            { id: 'comprovante', label: 'Comprovante de residência', type: 'file' } 
+        ];
+  
+        let missingFields = [];
+        let invalidEmail = false;
+        let formData = {};
+  
+        requiredFields.forEach(field => {
+            const input = document.getElementById(field.id);
+            const value = input.value.trim();
+            
+            // Validação geral dos campos obrigatórios
+            if (value === '') {
+                missingFields.push(`<li>${field.label}</li>`);
+                input.classList.add('is-invalid');
+            } else {
+                input.classList.remove('is-invalid');
+                formData[field.id] = value; // Save the value to formData
+            }
+  
+            // Validação específica para e-mail
+            if (field.id === 'email' && value !== '') {
+                if (!emailRegex.test(value)) {
+                    invalidEmail = true;
+                    input.classList.add('is-invalid');
+                }
+            }
+        });
+  
+        // Validação dos termos
+        const termsAccepted = document.getElementById('termos').checked;
+        const termsError = !termsAccepted ? '<li>Aceite os termos e condições</li>' : '';
+  
+        // Montagem da mensagem de erro
+        let errorMessage = '';
+        if (missingFields.length > 0 || invalidEmail || !termsAccepted) {
+            errorMessage += '<ul>';
+            
+            if (missingFields.length > 0) {
+                errorMessage += `<p>Campos obrigatórios não preenchidos:</p>${missingFields.join('')}`;
+            }
+            
+            if (invalidEmail) {
+                errorMessage += '<li>E-mail inválido</li>';
+                document.getElementById('email').classList.add('is-invalid');
+            }
+            
+            if (termsError) {
+                errorMessage += termsError;
+            }
+            
+            errorMessage += '</ul>';
+        }
+  
+        // Exibe o modal com os erros ou redireciona
+        if (errorMessage) {
+            document.getElementById('modalBody').innerHTML = errorMessage;
+            new bootstrap.Modal(document.getElementById('errorModal')).show();
+        } else {
+            // Save formData to LocalStorage
+            localStorage.setItem('formData', JSON.stringify(formData));
+            window.location.href = 'success.html';
+        }
+    });
+  
+    // Remove a validação quando o usuário digitar
+    document.querySelectorAll("input, select").forEach((input) => {
+        input.addEventListener("input", () => {
+            input.classList.remove("is-invalid");
+            // Validação em tempo real para e-mail
+            if (input.id === 'email' && input.value.trim() !== '') {
+                if (!emailRegex.test(input.value)) {
+                    input.classList.add('is-invalid');
+                }
+            }
+        });
+    });
+  }
 
 
 
@@ -253,3 +257,25 @@ function mostrarErroCEP() {
 
 // Adicione este event listener no DOMContentLoaded
 document.getElementById('cep').addEventListener('blur', buscarCEP);
+document.addEventListener('DOMContentLoaded', () => {
+    // Load form data from LocalStorage
+    const savedFormData = JSON.parse(localStorage.getItem('formData'));
+    if (savedFormData) {
+        Object.keys(savedFormData).forEach(key => {
+            const input = document.getElementById(key);
+            if (input) {
+                input.value = savedFormData[key];
+            }
+        });
+    }
+  
+    //Controle de varaiáveis de idiomas
+    const translations = {
+      // ...existing code...
+    };
+  
+    //Inicilizas as funções
+    functionDarkMode();
+    functionLanguageSelector(translations);
+    functionFormValidation();
+  });
