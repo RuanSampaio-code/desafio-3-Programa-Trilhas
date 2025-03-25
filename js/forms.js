@@ -276,59 +276,67 @@ function initCitySuggestions() {
     listaSugestoes.classList.add('list-group');
     inputCidade.parentNode.appendChild(listaSugestoes);
 
-    // Array de exemplos de cidades (você pode substituir por um banco de dados ou API)
-    const cidades = ["São Luís", "São Paulo", "Salvador", "Rio de Janeiro", "Recife", "Fortaleza"];
-
-    inputCidade.addEventListener("focus", function () {
-        listaSugestoes.innerHTML = ""; // Limpa sugestões anteriores
-        listaSugestoes.style.display = "block"; // Exibe a lista de sugestões
-
-        cidades.forEach(cidade => {
-            const li = document.createElement("li");
-            li.textContent = cidade;
-            li.classList.add("sugestao-item", "list-group-item");
-            li.addEventListener("click", function () {
-                inputCidade.value = cidade; // Preenche o campo ao clicar
-                listaSugestoes.innerHTML = ""; // Limpa a lista
-                listaSugestoes.style.display = "none"; // Oculta a lista de sugestões
+    // Carregar cidades do arquivo JSON
+    fetch('../assets/json/estados-cidades2.json')
+        .then(response => response.json())
+        .then(data => {
+            const cidades = [];
+            data.estados.forEach(estado => {
+                cidades.push(...estado.cidades);
             });
-            listaSugestoes.appendChild(li);
-        });
-    });
 
-    inputCidade.addEventListener("input", function () {
-        const termo = inputCidade.value.toLowerCase();
-        listaSugestoes.innerHTML = ""; // Limpa sugestões anteriores
+            inputCidade.addEventListener("focus", function () {
+                listaSugestoes.innerHTML = ""; // Limpa sugestões anteriores
+                listaSugestoes.style.display = "block"; // Exibe a lista de sugestões
 
-        if (termo.length < 2) {
-            listaSugestoes.style.display = "none"; // Oculta a lista se o termo for menor que 2 caracteres
-            return;
-        }
-
-        const sugestoesFiltradas = cidades.filter(cidade => 
-            cidade.toLowerCase().includes(termo)
-        );
-
-        sugestoesFiltradas.forEach(cidade => {
-            const li = document.createElement("li");
-            li.textContent = cidade;
-            li.classList.add("sugestao-item", "list-group-item");
-            li.addEventListener("click", function () {
-                inputCidade.value = cidade; // Preenche o campo ao clicar
-                listaSugestoes.innerHTML = ""; // Limpa a lista
-                listaSugestoes.style.display = "none"; // Oculta a lista de sugestões
+                cidades.forEach(cidade => {
+                    const li = document.createElement("li");
+                    li.textContent = cidade;
+                    li.classList.add("sugestao-item", "list-group-item");
+                    li.addEventListener("click", function () {
+                        inputCidade.value = cidade; // Preenche o campo ao clicar
+                        listaSugestoes.innerHTML = ""; // Limpa a lista
+                        listaSugestoes.style.display = "none"; // Oculta a lista de sugestões
+                    });
+                    listaSugestoes.appendChild(li);
+                });
             });
-            listaSugestoes.appendChild(li);
-        });
 
-        listaSugestoes.style.display = sugestoesFiltradas.length > 0 ? "block" : "none"; // Exibe a lista se houver sugestões
-    });
+            inputCidade.addEventListener("input", function () {
+                const termo = inputCidade.value.toLowerCase();
+                listaSugestoes.innerHTML = ""; // Limpa sugestões anteriores
 
-    // Ocultar sugestões ao clicar fora
-    document.addEventListener("click", function (e) {
-        if (!inputCidade.contains(e.target) && !listaSugestoes.contains(e.target)) {
-            listaSugestoes.innerHTML = "";
-            listaSugestoes.style.display = "none"; // Oculta a lista de sugestões
-        }
-    });
+                if (termo.length < 2) {
+                    listaSugestoes.style.display = "none"; // Oculta a lista se o termo for menor que 2 caracteres
+                    return;
+                }
+
+                const sugestoesFiltradas = cidades.filter(cidade => 
+                    cidade.toLowerCase().includes(termo)
+                );
+
+                sugestoesFiltradas.forEach(cidade => {
+                    const li = document.createElement("li");
+                    li.textContent = cidade;
+                    li.classList.add("sugestao-item", "list-group-item");
+                    li.addEventListener("click", function () {
+                        inputCidade.value = cidade; // Preenche o campo ao clicar
+                        listaSugestoes.innerHTML = ""; // Limpa a lista
+                        listaSugestoes.style.display = "none"; // Oculta a lista de sugestões
+                    });
+                    listaSugestoes.appendChild(li);
+                });
+
+                listaSugestoes.style.display = sugestoesFiltradas.length > 0 ? "block" : "none"; // Exibe a lista se houver sugestões
+            });
+
+            // Ocultar sugestões ao clicar fora
+            document.addEventListener("click", function (e) {
+                if (!inputCidade.contains(e.target) && !listaSugestoes.contains(e.target)) {
+                    listaSugestoes.innerHTML = "";
+                    listaSugestoes.style.display = "none"; // Oculta a lista de sugestões
+                }
+            });
+        })
+        .catch(error => console.error('Erro ao carregar cidades:', error));
 }
