@@ -1,122 +1,135 @@
 document.addEventListener('DOMContentLoaded', () => {
-  //Controle de varaiáveis de idiomas
-  const translations = {
-    en: {
-      backButton: "Back",
-      formTitle: "Registration Form",
-      formSubtitle: "Fill in the details below to register for the Trilhas Program.",
-      participantInfo: "Participant Information",
-      fullName: "Full Name",
-      birthDate: "Date of Birth",
-      cpf: "CPF",
-      gender: "Gender",
-      female: "Female",
-      male: "Male",
-      other: "Other",
-      preferNotToSay: "Prefer not to say",
-      email: "Email",
-      phone: "Phone",
-      identityDocument: "Identity Document",
-      clickToSelect: "Click here to select the file",
-      residentialAddress: "Residential Address",
-      zipCode: "ZIP Code",
-      street: "Street",
-      number: "Number",
-      city: "City",
-      state: "State",
-      residenceProof: "Proof of Residence",
-      learningTracks: "Learning Tracks",
-      selectOneTrack: "Select only one track",
-      frontend: "Front-end Programming",
-      backend: "Back-end Programming",
-      gameProgramming: "Game Programming",
-      designExperience: "Design and Experience",
-      dataScience: "Data Science",
-      termsConditions: "I declare that I have read and agree with the Terms and Conditions and the Privacy Policy.",
-      cancel: "Cancel",
-      submit: "Submit",
-      zipCodeError: "Invalid ZIP Code",
-      zipCodeFeedback: "Please enter a valid ZIP Code"
-    },
-    pt: {
-      backButton: "Voltar",
-      formTitle: "Formulário de inscrição",
-      formSubtitle: "Preencha os dados abaixo para fazer sua inscrição no Programa Trilhas.",
-      participantInfo: "Informações do participante",
-      fullName: "Nome completo",
-      birthDate: "Data de nascimento",
-      cpf: "CPF",
-      gender: "Sexo",
-      female: "Feminino",
-      male: "Masculino",
-      other: "Outro",
-      preferNotToSay: "Prefiro não informar",
-      email: "E-mail",
-      phone: "Telefone",
-      identityDocument: "Documento de identidade",
-      clickToSelect: "Clique aqui para selecionar o arquivo",
-      residentialAddress: "Endereço residencial",
-      zipCode: "CEP",
-      street: "Rua",
-      number: "Número",
-      city: "Cidade",
-      state: "Estado",
-      residenceProof: "Comprovante de residência",
-      learningTracks: "Trilhas de apredizagem",
-      selectOneTrack: "Selecione apenas uma trilha",
-      frontend: "Programação Front-end",
-      backend: "Programação Back-end",
-      gameProgramming: "Programação de Jogos",
-      designExperience: "Design e Experiência",
-      dataScience: "Ciência de Dados",
-      termsConditions: "Declaro que li e concordo com os Termos e Condições e com a Política de Privacidade.",
-      cancel: "Cancelar",
-      submit: "Fazer inscrição",
-      zipCodeError: "CEP inválido",
-      zipCodeFeedback: "Por favor, insira um CEP válido"
+    // Load form data from LocalStorage
+    const savedFormData = JSON.parse(localStorage.getItem('formData'));
+    if (savedFormData) {
+        Object.keys(savedFormData).forEach(key => {
+            const input = document.getElementById(key);
+            if (input) {
+                input.value = savedFormData[key];
+            }
+        });
     }
-  };
-  //Inicilizas as funções
-  functionDarkMode();
-  functionLanguageSelector(translations);
-  functionFormValidation();
+
+    //Controle de varaiáveis de idiomas
+    const translations = {
+        en: {
+            backButton: "Back",
+            formTitle: "Registration Form",
+            formSubtitle: "Fill in the details below to register for the Trilhas Program.",
+            participantInfo: "Participant Information",
+            fullName: "Full Name",
+            birthDate: "Date of Birth",
+            cpf: "CPF",
+            gender: "Gender",
+            female: "Female",
+            male: "Male",
+            other: "Other",
+            preferNotToSay: "Prefer not to say",
+            email: "Email",
+            phone: "Phone",
+            identityDocument: "Identity Document",
+            clickToSelect: "Click here to select the file",
+            residentialAddress: "Residential Address",
+            zipCode: "ZIP Code",
+            street: "Street",
+            number: "Number",
+            city: "City",
+            state: "State",
+            residenceProof: "Proof of Residence",
+            learningTracks: "Learning Tracks",
+            selectOneTrack: "Select only one track",
+            frontend: "Front-end Programming",
+            backend: "Back-end Programming",
+            gameProgramming: "Game Programming",
+            designExperience: "Design and Experience",
+            dataScience: "Data Science",
+            termsConditions: "I declare that I have read and agree with the Terms and Conditions and the Privacy Policy.",
+            cancel: "Cancel",
+            submit: "Submit",
+            zipCodeError: "Invalid ZIP Code",
+            zipCodeFeedback: "Please enter a valid ZIP Code"
+        },
+        pt: {
+            backButton: "Voltar",
+            formTitle: "Formulário de inscrição",
+            formSubtitle: "Preencha os dados abaixo para fazer sua inscrição no Programa Trilhas.",
+            participantInfo: "Informações do participante",
+            fullName: "Nome completo",
+            birthDate: "Data de nascimento",
+            cpf: "CPF",
+            gender: "Sexo",
+            female: "Feminino",
+            male: "Masculino",
+            other: "Outro",
+            preferNotToSay: "Prefiro não informar",
+            email: "E-mail",
+            phone: "Telefone",
+            identityDocument: "Documento de identidade",
+            clickToSelect: "Clique aqui para selecionar o arquivo",
+            residentialAddress: "Endereço residencial",
+            zipCode: "CEP",
+            street: "Rua",
+            number: "Número",
+            city: "Cidade",
+            state: "Estado",
+            residenceProof: "Comprovante de residência",
+            learningTracks: "Trilhas de apredizagem",
+            selectOneTrack: "Selecione apenas uma trilha",
+            frontend: "Programação Front-end",
+            backend: "Programação Back-end",
+            gameProgramming: "Programação de Jogos",
+            designExperience: "Design e Experiência",
+            dataScience: "Ciência de Dados",
+            termsConditions: "Declaro que li e concordo com os Termos e Condições e com a Política de Privacidade.",
+            cancel: "Cancelar",
+            submit: "Fazer inscrição",
+            zipCodeError: "CEP inválido",
+            zipCodeFeedback: "Por favor, insira um CEP válido"
+        }
+    };
+
+    //Inicilizas as funções
+    functionDarkMode();
+    functionLanguageSelector(translations);
+    functionFormValidation();
+    initCitySuggestions();
+    initAutocomplete('cidade', ["São Luís", "São Paulo", "Salvador", "Rio de Janeiro", "Recife", "Fortaleza"]);
 });
 
 //Função para ativar o modo escuro
 function functionDarkMode() {
-  const toggleSwitch = document.getElementById('darkModeToggle');
-  const currentMode = localStorage.getItem('darkMode');
-  
-  if (currentMode === 'enabled') {
-      document.body.classList.add('dark-mode');
-      toggleSwitch.checked = true;
-  }
+    const toggleSwitch = document.getElementById('darkModeToggle');
+    const currentMode = localStorage.getItem('darkMode');
+    
+    if (currentMode === 'enabled') {
+        document.body.classList.add('dark-mode');
+        toggleSwitch.checked = true;
+    }
 
-  toggleSwitch.addEventListener('change', () => {
-      document.body.classList.toggle('dark-mode', toggleSwitch.checked);
-      localStorage.setItem('darkMode', toggleSwitch.checked ? 'enabled' : 'disabled');
-  });
+    toggleSwitch.addEventListener('change', () => {
+        document.body.classList.toggle('dark-mode', toggleSwitch.checked);
+        localStorage.setItem('darkMode', toggleSwitch.checked ? 'enabled' : 'disabled');
+    });
 }
 
 //Função para selecionar o idioma
 function functionLanguageSelector(translations) {
-  const languageSelect = document.getElementById('languageSelect');
-  languageSelect.addEventListener('change', (event) => {
-      updateTranslations(event.target.value, translations);
-  });
-  updateTranslations(languageSelect.value, translations);
+    const languageSelect = document.getElementById('languageSelect');
+    languageSelect.addEventListener('change', (event) => {
+        updateTranslations(event.target.value, translations);
+    });
+    updateTranslations(languageSelect.value, translations);
 }
 
 //Função para atualizar as traduções
 function updateTranslations(language, translations) {
-  document.querySelectorAll('[data-translate]').forEach(element => {
-      const key = element.getAttribute('data-translate');
-      element.textContent = translations[language][key];
-  });
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        element.textContent = translations[language][key];
+    });
 }
 
-//Função para validar o formulário// Função para validar o formulário
-// Função para validar o formulário
+//Função para validar o formulário
 function functionFormValidation() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex para validar e-mail
   
@@ -212,70 +225,145 @@ function functionFormValidation() {
             }
         });
     });
-  }
-
-
+}
 
 // Função para buscar o CEP
 function buscarCEP() {
-  const cepInput = document.getElementById('cep');
-  const cep = cepInput.value.replace(/\D/g, '');
-  
-  if (cep.length !== 8) return;
-  
-  fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then(response => response.json())
-      .then(data => {
-          if (data.erro) {
-              throw new Error('CEP não encontrado');
-          }
-          
-          // Preenche os campos
-          document.getElementById('rua').value = data.logradouro;
-          document.getElementById('cidade').value = data.localidade;
-          document.getElementById('estado').value = data.uf;
-          
-          // Remove a classe de erro se tiver
-          cepInput.classList.remove('is-invalid');
-      })
-      .catch(error => {
-          console.error(error);
-          cepInput.classList.add('is-invalid');
-          mostrarErroCEP();
-      });
+    const cepInput = document.getElementById('cep');
+    const cep = cepInput.value.replace(/\D/g, '');
+    
+    if (cep.length !== 8) return;
+    
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.erro) {
+                throw new Error('CEP não encontrado');
+            }
+            
+            // Preenche os campos
+            document.getElementById('rua').value = data.logradouro;
+            document.getElementById('cidade').value = data.localidade;
+            document.getElementById('estado').value = data.uf;
+            
+            // Remove a classe de erro se tiver
+            cepInput.classList.remove('is-invalid');
+        })
+        .catch(error => {
+            console.error(error);
+            cepInput.classList.add('is-invalid');
+            mostrarErroCEP();
+        });
 }
 
 // Função para mostrar erro no modal
 function mostrarErroCEP() {
-  const modalBody = document.getElementById('modalBody');
-  modalBody.innerHTML = `
-      <p>CEP não encontrado ou inválido!</p>
-      <p>Verifique o número digitado e tente novamente.</p>
-  `;
-  new bootstrap.Modal(document.getElementById('errorModal')).show();
+    const modalBody = document.getElementById('modalBody');
+    modalBody.innerHTML = `
+        <p>CEP não encontrado ou inválido!</p>
+        <p>Verifique o número digitado e tente novamente.</p>
+    `;
+    new bootstrap.Modal(document.getElementById('errorModal')).show();
 }
 
 // Adicione este event listener no DOMContentLoaded
 document.getElementById('cep').addEventListener('blur', buscarCEP);
-document.addEventListener('DOMContentLoaded', () => {
-    // Load form data from LocalStorage
-    const savedFormData = JSON.parse(localStorage.getItem('formData'));
-    if (savedFormData) {
-        Object.keys(savedFormData).forEach(key => {
-            const input = document.getElementById(key);
-            if (input) {
-                input.value = savedFormData[key];
-            }
+
+// Função para sugestões de cidades
+function initCitySuggestions() {
+    const inputCidade = document.getElementById("cidade");
+    const listaSugestoes = document.getElementById("sugestoes");
+
+    // Array de exemplos de cidades (você pode substituir por um banco de dados ou API)
+    const cidades = ["São Luís", "São Paulo", "Salvador", "Rio de Janeiro", "Recife", "Fortaleza"];
+
+    inputCidade.addEventListener("input", function () {
+        const termo = inputCidade.value.toLowerCase();
+        listaSugestoes.innerHTML = ""; // Limpa sugestões anteriores
+
+        if (termo.length < 2) return; // Só busca sugestões se houver pelo menos 2 caracteres
+
+        const sugestoesFiltradas = cidades.filter(cidade => 
+            cidade.toLowerCase().includes(termo)
+        );
+
+        sugestoesFiltradas.forEach(cidade => {
+            const li = document.createElement("li");
+            li.textContent = cidade;
+            li.classList.add("sugestao-item");
+            li.addEventListener("click", function () {
+                inputCidade.value = cidade; // Preenche o campo ao clicar
+                listaSugestoes.innerHTML = ""; // Limpa a lista
+            });
+            listaSugestoes.appendChild(li);
         });
-    }
-  
-    //Controle de varaiáveis de idiomas
-    const translations = {
-      // ...existing code...
-    };
-  
-    //Inicilizas as funções
-    functionDarkMode();
-    functionLanguageSelector(translations);
-    functionFormValidation();
-  });
+    });
+
+    // Mostrar todas as sugestões inicialmente
+    cidades.forEach(cidade => {
+        const li = document.createElement("li");
+        li.textContent = cidade;
+        li.classList.add("sugestao-item");
+        li.addEventListener("click", function () {
+            inputCidade.value = cidade; // Preenche o campo ao clicar
+            listaSugestoes.innerHTML = ""; // Limpa a lista
+        });
+        listaSugestoes.appendChild(li);
+    });
+
+    // Ocultar sugestões ao clicar fora
+    document.addEventListener("click", function (e) {
+        if (!inputCidade.contains(e.target) && !listaSugestoes.contains(e.target)) {
+            listaSugestoes.innerHTML = "";
+        }
+    });
+}
+
+// Função para inicializar autocompletar em qualquer campo
+function initAutocomplete(inputId, suggestions) {
+    const inputElement = document.getElementById(inputId);
+    const suggestionList = document.createElement('ul');
+    suggestionList.classList.add('suggestion-list');
+    inputElement.parentNode.appendChild(suggestionList);
+
+    inputElement.addEventListener('input', function () {
+        const term = inputElement.value.toLowerCase();
+        suggestionList.innerHTML = ""; // Limpa sugestões anteriores
+
+        if (term.length < 2) return; // Só busca sugestões se houver pelo menos 2 caracteres
+
+        const filteredSuggestions = suggestions.filter(suggestion => 
+            suggestion.toLowerCase().includes(term)
+        );
+
+        filteredSuggestions.forEach(suggestion => {
+            const li = document.createElement('li');
+            li.textContent = suggestion;
+            li.classList.add('suggestion-item');
+            li.addEventListener('click', function () {
+                inputElement.value = suggestion; // Preenche o campo ao clicar
+                suggestionList.innerHTML = ""; // Limpa a lista
+            });
+            suggestionList.appendChild(li);
+        });
+    });
+
+    // Mostrar todas as sugestões inicialmente
+    suggestions.forEach(suggestion => {
+        const li = document.createElement('li');
+        li.textContent = suggestion;
+        li.classList.add('suggestion-item');
+        li.addEventListener('click', function () {
+            inputElement.value = suggestion; // Preenche o campo ao clicar
+            suggestionList.innerHTML = ""; // Limpa a lista
+        });
+        suggestionList.appendChild(li);
+    });
+
+    // Ocultar sugestões ao clicar fora
+    document.addEventListener('click', function (e) {
+        if (!inputElement.contains(e.target) && !suggestionList.contains(e.target)) {
+            suggestionList.innerHTML = "";
+        }
+    });
+}
