@@ -93,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
     functionLanguageSelector(translations);
     functionFormValidation();
     initCitySuggestions();
-    initAutocomplete('cidade', ["São Luís", "São Paulo", "Salvador", "Rio de Janeiro", "Recife", "Fortaleza"]);
 });
 
 //Função para ativar o modo escuro
@@ -272,16 +271,39 @@ document.getElementById('cep').addEventListener('blur', buscarCEP);
 // Função para sugestões de cidades
 function initCitySuggestions() {
     const inputCidade = document.getElementById("cidade");
-    const listaSugestoes = document.getElementById("sugestoes");
+    const listaSugestoes = document.createElement('ul');
+    listaSugestoes.id = 'sugestoes';
+    listaSugestoes.classList.add('list-group');
+    inputCidade.parentNode.appendChild(listaSugestoes);
 
     // Array de exemplos de cidades (você pode substituir por um banco de dados ou API)
     const cidades = ["São Luís", "São Paulo", "Salvador", "Rio de Janeiro", "Recife", "Fortaleza"];
+
+    inputCidade.addEventListener("focus", function () {
+        listaSugestoes.innerHTML = ""; // Limpa sugestões anteriores
+        listaSugestoes.style.display = "block"; // Exibe a lista de sugestões
+
+        cidades.forEach(cidade => {
+            const li = document.createElement("li");
+            li.textContent = cidade;
+            li.classList.add("sugestao-item", "list-group-item");
+            li.addEventListener("click", function () {
+                inputCidade.value = cidade; // Preenche o campo ao clicar
+                listaSugestoes.innerHTML = ""; // Limpa a lista
+                listaSugestoes.style.display = "none"; // Oculta a lista de sugestões
+            });
+            listaSugestoes.appendChild(li);
+        });
+    });
 
     inputCidade.addEventListener("input", function () {
         const termo = inputCidade.value.toLowerCase();
         listaSugestoes.innerHTML = ""; // Limpa sugestões anteriores
 
-        if (termo.length < 2) return; // Só busca sugestões se houver pelo menos 2 caracteres
+        if (termo.length < 2) {
+            listaSugestoes.style.display = "none"; // Oculta a lista se o termo for menor que 2 caracteres
+            return;
+        }
 
         const sugestoesFiltradas = cidades.filter(cidade => 
             cidade.toLowerCase().includes(termo)
@@ -290,80 +312,23 @@ function initCitySuggestions() {
         sugestoesFiltradas.forEach(cidade => {
             const li = document.createElement("li");
             li.textContent = cidade;
-            li.classList.add("sugestao-item");
+            li.classList.add("sugestao-item", "list-group-item");
             li.addEventListener("click", function () {
                 inputCidade.value = cidade; // Preenche o campo ao clicar
                 listaSugestoes.innerHTML = ""; // Limpa a lista
+                listaSugestoes.style.display = "none"; // Oculta a lista de sugestões
             });
             listaSugestoes.appendChild(li);
         });
-    });
 
-    // Mostrar todas as sugestões inicialmente
-    cidades.forEach(cidade => {
-        const li = document.createElement("li");
-        li.textContent = cidade;
-        li.classList.add("sugestao-item");
-        li.addEventListener("click", function () {
-            inputCidade.value = cidade; // Preenche o campo ao clicar
-            listaSugestoes.innerHTML = ""; // Limpa a lista
-        });
-        listaSugestoes.appendChild(li);
+        listaSugestoes.style.display = sugestoesFiltradas.length > 0 ? "block" : "none"; // Exibe a lista se houver sugestões
     });
 
     // Ocultar sugestões ao clicar fora
     document.addEventListener("click", function (e) {
         if (!inputCidade.contains(e.target) && !listaSugestoes.contains(e.target)) {
             listaSugestoes.innerHTML = "";
-        }
-    });
-}
-
-// Função para inicializar autocompletar em qualquer campo
-function initAutocomplete(inputId, suggestions) {
-    const inputElement = document.getElementById(inputId);
-    const suggestionList = document.createElement('ul');
-    suggestionList.classList.add('suggestion-list');
-    inputElement.parentNode.appendChild(suggestionList);
-
-    inputElement.addEventListener('input', function () {
-        const term = inputElement.value.toLowerCase();
-        suggestionList.innerHTML = ""; // Limpa sugestões anteriores
-
-        if (term.length < 2) return; // Só busca sugestões se houver pelo menos 2 caracteres
-
-        const filteredSuggestions = suggestions.filter(suggestion => 
-            suggestion.toLowerCase().includes(term)
-        );
-
-        filteredSuggestions.forEach(suggestion => {
-            const li = document.createElement('li');
-            li.textContent = suggestion;
-            li.classList.add('suggestion-item');
-            li.addEventListener('click', function () {
-                inputElement.value = suggestion; // Preenche o campo ao clicar
-                suggestionList.innerHTML = ""; // Limpa a lista
-            });
-            suggestionList.appendChild(li);
-        });
-    });
-
-    // Mostrar todas as sugestões inicialmente
-    suggestions.forEach(suggestion => {
-        const li = document.createElement('li');
-        li.textContent = suggestion;
-        li.classList.add('suggestion-item');
-        li.addEventListener('click', function () {
-            inputElement.value = suggestion; // Preenche o campo ao clicar
-            suggestionList.innerHTML = ""; // Limpa a lista
-        });
-        suggestionList.appendChild(li);
-    });
-
-    // Ocultar sugestões ao clicar fora
-    document.addEventListener('click', function (e) {
-        if (!inputElement.contains(e.target) && !suggestionList.contains(e.target)) {
-            suggestionList.innerHTML = "";
+            listaSugestoes.style.display = "none"; // Oculta a lista de sugestões
         }
     });
 }
