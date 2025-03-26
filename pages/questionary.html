@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/questionary.css">
+</head>
+<body>
+    <div class="position-absolute">
+        <!-- Dark mode e Selação de idiomas -->
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider round"></span>
+        </label>
+        <select id="languageSelect" class="form-select form-select-sm">
+            <option value="pt">Português</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+
+    <form action="enviar-feedback.php" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="velocidade">Como você avalia a velocidade do site?</label><br>
+        <input type="radio" id="velocidade_boa" name="velocidade" value="Boa" required>
+        <label for="velocidade_boa">Boa</label><br>
+        <input type="radio" id="velocidade_regular" name="velocidade" value="Regular" required>
+        <label for="velocidade_regular">Regular</label><br>
+        <input type="radio" id="velocidade_ruim" name="velocidade" value="Ruim" required>
+        <label for="velocidade_ruim">Ruim</label><br><br>
+
+        <label for="usabilidade">Como você avalia a facilidade de uso do site?</label><br>
+        <input type="radio" id="usabilidade_boa" name="usabilidade" value="Boa" required>
+        <label for="usabilidade_boa">Boa</label><br>
+        <input type="radio" id="usabilidade_regular" name="usabilidade" value="Regular" required>
+        <label for="usabilidade_regular">Regular</label><br>
+        <input type="radio" id="usabilidade_ruim" name="usabilidade" value="Ruim" required>
+        <label for="usabilidade_ruim">Ruim</label><br><br>
+
+        <label for="problemas">Você encontrou algum problema durante a inscrição?</label><br>
+        <textarea id="problemas" name="problemas" rows="4" cols="50" placeholder="Descreva o problema encontrado, se houver."></textarea><br><br>
+
+        <label for="satisfacao">Qual é o seu nível de satisfação com o site?</label><br>
+        <input type="range" id="satisfacao" name="satisfacao" min="1" max="5" required>
+        <label for="satisfacao">1 (muito insatisfeito) a 5 (muito satisfeito)</label><br><br>
+
+        <label for="comentarios">Comentários adicionais:</label><br>
+        <textarea id="comentarios" name="comentarios" rows="4" cols="50" placeholder="Deixe seu feedback sobre o site."></textarea><br><br>
+
+        <button type="submit">Enviar Feedback</button>
+    </form>
+    
+</body>
+</html>

@@ -4,14 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
         translations: {
             en: {
                 congratulations: "Congratulations!",
-                congratulations__register: "Congratulations! Your registration has been successful.",
-                congratulations__credit: "The Government of the State of Maranhão, through SECTI in partnership with FAPEMA, thanks you for your participation."
                 
             },
             pt: {
                 congratulations: "Parabéns!",
-                congratulations__register: "Parabéns! Sua inscrição foi realizada com sucesso",
-                congratulations__credit: "O Governo do Estado do Maranhão, por meio da SECTI em parceria com a FAPEMA, agradece sua participação."
                 
             }
         },
@@ -41,35 +37,23 @@ document.addEventListener('DOMContentLoaded', () => {
         setupDarkMode() {
             const toggleSwitch = document.getElementById('darkModeToggle');
             const body = document.body;
-<<<<<<< HEAD
             const form = document.querySelector('form');
-=======
->>>>>>> bdfa4b5bb08b429b7a4170ac91865ac87b6d42f7
             const currentMode = localStorage.getItem('darkMode');
 
             if (currentMode === 'enabled') {
                 body.classList.add('dark-mode');
-<<<<<<< HEAD
                 form.classList.add('dark-mode');
-=======
->>>>>>> bdfa4b5bb08b429b7a4170ac91865ac87b6d42f7
                 toggleSwitch.checked = true;
             }
 
             toggleSwitch.addEventListener('change', () => {
                 if (toggleSwitch.checked) {
                     body.classList.add('dark-mode');
-<<<<<<< HEAD
                     form.classList.add('dark-mode');
                     localStorage.setItem('darkMode', 'enabled');
                 } else {
                     body.classList.remove('dark-mode');
                     form.classList.remove('dark-mode');
-=======
-                    localStorage.setItem('darkMode', 'enabled');
-                } else {
-                    body.classList.remove('dark-mode');
->>>>>>> bdfa4b5bb08b429b7a4170ac91865ac87b6d42f7
                     localStorage.setItem('darkMode', 'disabled');
                 }
             });
