@@ -1,3 +1,10 @@
+.position-absolute {
+    display:flex;
+    justify-content: arrows;
+    top:0;
+    right: 1%;
+}
+
 .switch {
     position: relative;
     display: inline-block;
@@ -47,13 +54,6 @@ input:checked + .slider:before {
 body.dark-mode {
     background-color: #121212;
     color: #ffffff;
-}
-
-.top-right-controls {
-    z-index: 9999; 
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Espaçamento entre os elementos */
 }
 
 .welcome-message {
