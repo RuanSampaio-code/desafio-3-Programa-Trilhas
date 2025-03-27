@@ -208,6 +208,7 @@ function functionFormValidation() {
         } else {
             // Save formData to LocalStorage
             localStorage.setItem('formData', JSON.stringify(formData));
+            //document.querySelector('form').reset(); // Adicionar esta linha para limpar o formulário
             window.location.href = 'success.html';
         }
     });
