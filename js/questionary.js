@@ -37,23 +37,19 @@ document.addEventListener('DOMContentLoaded', () => {
         setupDarkMode() {
             const toggleSwitch = document.getElementById('darkModeToggle');
             const body = document.body;
-            const form = document.querySelector('form');
             const currentMode = localStorage.getItem('darkMode');
 
             if (currentMode === 'enabled') {
                 body.classList.add('dark-mode');
-                form.classList.add('dark-mode');
                 toggleSwitch.checked = true;
             }
 
             toggleSwitch.addEventListener('change', () => {
                 if (toggleSwitch.checked) {
                     body.classList.add('dark-mode');
-                    form.classList.add('dark-mode');
                     localStorage.setItem('darkMode', 'enabled');
                 } else {
                     body.classList.remove('dark-mode');
-                    form.classList.remove('dark-mode');
                     localStorage.setItem('darkMode', 'disabled');
                 }
             });
@@ -63,3 +59,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    const inputSatisfacao = document.getElementById("satisfacao");
+    const outputValor = document.getElementById("valorSatisfacao");
+
+    // Definir o valor inicial corretamente
+    outputValor.textContent = inputSatisfacao.value;
+
+    // Atualizar o valor dinamicamente ao mover o slider
+    inputSatisfacao.addEventListener("input", function() {
+        outputValor.textContent = inputSatisfacao.value;
+    });
+});
