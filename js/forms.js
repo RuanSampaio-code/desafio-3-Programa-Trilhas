@@ -4,12 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (savedFormData) {
         Object.keys(savedFormData).forEach(key => {
             const input = document.getElementById(key);
-            if (input) {
+            if (input && input.type !== "file") {
                 input.value = savedFormData[key];
             }
         });
     }
-
     //Controle de varaiáveis de idiomas
     const translations = {
         en: {
@@ -175,6 +174,14 @@ function functionFormValidation() {
                 }
             }
         });
+
+        // ✅ **Validação da trilha de aprendizagem**
+        const learningTrack = document.querySelector('input[name="trilha"]:checked');
+        if (!learningTrack) {
+            missingFields.push('<li>Trilha de aprendizagem</li>');
+        } else {
+            formData['trilha'] = learningTrack.value; // Armazena a trilha escolhida
+        }
   
         // Validação dos termos
         const termsAccepted = document.getElementById('termos').checked;
@@ -208,24 +215,11 @@ function functionFormValidation() {
         } else {
             // Save formData to LocalStorage
             localStorage.setItem('formData', JSON.stringify(formData));
-            //document.querySelector('form').reset(); // Adicionar esta linha para limpar o formulário
             window.location.href = 'success.html';
         }
     });
-  
-    // Remove a validação quando o usuário digitar
-    document.querySelectorAll("input, select").forEach((input) => {
-        input.addEventListener("input", () => {
-            input.classList.remove("is-invalid");
-            // Validação em tempo real para e-mail
-            if (input.id === 'email' && input.value.trim() !== '') {
-                if (!emailRegex.test(input.value)) {
-                    input.classList.add('is-invalid');
-                }
-            }
-        });
-    });
 }
+
 
 // Função para buscar o CEP
 function buscarCEP() {
