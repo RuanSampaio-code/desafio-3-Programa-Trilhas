@@ -5,16 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 congratulations: "Congratulations!",
                 feedbackTitle: "Site Feedback",
                 name: "Name:",
-                email: "Email:",
+                email: "Email for contact:",
                 siteSpeed: "How do you rate the site's speed?",
                 usability: "How do you rate the site's usability?",
                 good: "Good",
                 regular: "Regular",
                 bad: "Bad",
                 problems: "Did you encounter any problems during registration?",
+                problemsPlaceholder: "Describe the problem encountered, if any.",
                 satisfaction: "What is your level of satisfaction with the site?",
                 satisfactionRange: "1 (very dissatisfied) to 5 (very satisfied)",
                 additionalComments: "Additional comments:",
+                commentsPlaceholder: "Leave your feedback about the site.",
                 submitFeedback: "Submit Feedback",
                 selected: "Selected:"
             },
@@ -29,61 +31,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 regular: "Regular",
                 bad: "Ruim",
                 problems: "Você encontrou algum problema durante a inscrição?",
+                problemsPlaceholder: "Descreva o problema encontrado, se houver.",
                 satisfaction: "Qual é o seu nível de satisfação com o site?",
                 satisfactionRange: "1 (muito insatisfeito) a 5 (muito satisfeito)",
                 additionalComments: "Comentários adicionais:",
+                commentsPlaceholder: "Deixe seu feedback sobre o site.",
                 submitFeedback: "Enviar Feedback",
                 selected: "Selecionado:"
             }
         },
         
         init() {
-            this.setupLanguageSelector();
-            this.setupDarkMode();
+            functionLanguageSelector(this.translations);
+            functionDarkMode();
             this.setupSatisfactionSlider();
-        },
-
-        setupLanguageSelector() {
-            const languageSelect = document.getElementById('languageSelect');
-            languageSelect.addEventListener('change', () => {
-                this.updateTranslations(languageSelect.value);
-            });
-
-            // Definir o idioma inicial
-            this.updateTranslations(languageSelect.value);
-        },
-
-        updateTranslations(language) {
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                element.textContent = this.translations[language][key];
-            });
-        },
-
-        setupDarkMode() {
-            const toggleSwitch = document.getElementById('darkModeToggle');
-            const body = document.body;
-            const currentMode = localStorage.getItem('darkMode');
-
-            if (currentMode === 'enabled') {
-                body.classList.add('dark-mode');
-                toggleSwitch.checked = true;
-            }
-
-            toggleSwitch.addEventListener('change', () => {
-                if (toggleSwitch.checked) {
-                    body.classList.add('dark-mode');
-                    localStorage.setItem('darkMode', 'enabled');
-                } else {
-                    body.classList.remove('dark-mode');
-                    localStorage.setItem('darkMode', 'disabled');
-                }
-            });
         },
 
         setupSatisfactionSlider() {
             const inputSatisfacao = document.getElementById("satisfacao");
             const sliderValue = document.getElementById("sliderValue");
+
+            if (!inputSatisfacao || !sliderValue) {
+                console.warn("Slider de satisfação ou indicador não encontrado.");
+                return;
+            }
         
             // Atualizar o valor inicial e a posição do indicador
             const updateSliderValue = () => {

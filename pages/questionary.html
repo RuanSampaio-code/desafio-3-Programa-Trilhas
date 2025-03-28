@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Questionário</title>
+    <title data-translate="feedbackTitle">Questionário</title>
     <link rel="stylesheet" href="../assets/css/questionary.css">
+    <script src="../js/global.js" defer></script>
     <script src="../js/questionary.js" defer></script>
 </head>
 <body>
@@ -21,52 +22,52 @@
     </div>
 
     <form action="enviar-feedback.php" method="POST">
-        <h1 class="text-center mb-4">Feedback do Site</h1>
+        <h1 class="text-center mb-4" data-translate="feedbackTitle">Feedback do Site</h1>
 
-        <label for="nome">Nome:</label>
+        <label for="nome" data-translate="name">Nome:</label>
         <input type="text" id="nome" name="nome" required><br>
 
-        <label for="email">Email para contato:</label>
+        <label for="email" data-translate="email">Email para contato:</label>
         <input type="email" id="email" name="email" required><br>
 
-        <label for="velocidade">Como você avalia a velocidade do site?</label>
+        <label for="velocidade" data-translate="siteSpeed">Como você avalia a velocidade do site?</label>
         <div class="radio-group">
             <input type="radio" id="velocidade_boa" name="velocidade" value="Boa" required>
-            <label for="velocidade_boa">Boa</label>
+            <label for="velocidade_boa" data-translate="good">Boa</label>
 
             <input type="radio" id="velocidade_regular" name="velocidade" value="Regular" required>
-            <label for="velocidade_regular">Regular</label>
+            <label for="velocidade_regular" data-translate="regular">Regular</label>
 
             <input type="radio" id="velocidade_ruim" name="velocidade" value="Ruim" required>
-            <label for="velocidade_ruim">Ruim</label>
+            <label for="velocidade_ruim" data-translate="bad">Ruim</label>
         </div>
 
-        <label for="usabilidade">Como você avalia a facilidade de uso do site?</label>
+        <label for="usabilidade" data-translate="usability">Como você avalia a facilidade de uso do site?</label>
         <div class="radio-group">
             <input type="radio" id="usabilidade_boa" name="usabilidade" value="Boa" required>
-            <label for="usabilidade_boa">Boa</label>
+            <label for="usabilidade_boa" data-translate="good">Boa</label>
 
             <input type="radio" id="usabilidade_regular" name="usabilidade" value="Regular" required>
-            <label for="usabilidade_regular">Regular</label>
+            <label for="usabilidade_regular" data-translate="regular">Regular</label>
 
             <input type="radio" id="usabilidade_ruim" name="usabilidade" value="Ruim" required>
-            <label for="usabilidade_ruim">Ruim</label>
+            <label for="usabilidade_ruim" data-translate="bad">Ruim</label>
         </div>
 
-        <label for="problemas">Você encontrou algum problema durante a inscrição?</label>
-        <textarea id="problemas" name="problemas" rows="4" cols="50" placeholder="Descreva o problema encontrado, se houver."></textarea><br>
+        <label for="problemas" data-translate="problems">Você encontrou algum problema durante a inscrição?</label>
+        <textarea id="problemas" name="problemas" rows="4" cols="50" placeholder="Descreva o problema encontrado, se houver." data-translate="problemsPlaceholder"></textarea><br>
 
         <label for="satisfacao" data-translate="satisfaction">Qual é o seu nível de satisfação com o site?</label>
-    <div class="slider-container">
-    <input type="range" id="satisfacao" name="satisfacao" min="1" max="5" value="3" class="form-range">
-    <div id="sliderValue" class="slider-value">3</div>
-</div>
-<label for="satisfacao" data-translate="satisfactionRange">1 (muito insatisfeito) a 5 (muito satisfeito)</label><br>
+        <div class="slider-container">
+            <input type="range" id="satisfacao" name="satisfacao" min="1" max="5" value="3" class="form-range">
+            <div id="sliderValue" class="slider-value">3</div>
+        </div>
+        <label for="satisfacao" data-translate="satisfactionRange">1 (muito insatisfeito) a 5 (muito satisfeito)</label><br>
 
-        <label for="comentarios">Comentários adicionais:</label>
-        <textarea id="comentarios" name="comentarios" rows="4" cols="50" placeholder="Deixe seu feedback sobre o site."></textarea><br>
+        <label for="comentarios" data-translate="additionalComments">Comentários adicionais:</label>
+        <textarea id="comentarios" name="comentarios" rows="4" cols="50" placeholder="Deixe seu feedback sobre o site." data-translate="commentsPlaceholder"></textarea><br>
 
-        <button type="submit" class="btn btn-primary w-100">Enviar Feedback</button>
+        <button type="submit" class="btn btn-primary w-100" data-translate="submitFeedback">Enviar Feedback</button>
     </form>
 </body>
 </html>
