@@ -93,15 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
     functionFormValidation();
     initCitySuggestions();
 });
-
-//Função para atualizar as traduções
-function updateTranslations(language, translations) {
-    document.querySelectorAll('[data-translate]').forEach(element => {
-        const key = element.getAttribute('data-translate');
-        element.textContent = translations[language][key];
-    });
-}
-
 //Função para validar o formulário
 function functionFormValidation() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex para validar e-mail
@@ -150,7 +141,6 @@ function functionFormValidation() {
             }
         });
 
-        // ✅ **Validação da trilha de aprendizagem**
         const learningTrack = document.querySelector('input[name="trilha"]:checked');
         if (!learningTrack) {
             missingFields.push('<li>Trilha de aprendizagem</li>');
