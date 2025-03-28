@@ -56,10 +56,12 @@
         <label for="problemas">Você encontrou algum problema durante a inscrição?</label>
         <textarea id="problemas" name="problemas" rows="4" cols="50" placeholder="Descreva o problema encontrado, se houver."></textarea><br>
 
-        <label for="satisfacao">Qual é o seu nível de satisfação com o site?</label>
-        <input type="range" id="satisfacao" name="satisfacao" min="1" max="5" value="3" class="form-range">
-        <p>Selecionado: <span id="valorSatisfacao">3</span></p>
-        <label for="satisfacao">1 (muito insatisfeito) a 5 (muito satisfeito)</label><br>
+        <label for="satisfacao" data-translate="satisfaction">Qual é o seu nível de satisfação com o site?</label>
+    <div class="slider-container">
+    <input type="range" id="satisfacao" name="satisfacao" min="1" max="5" value="3" class="form-range">
+    <div id="sliderValue" class="slider-value">3</div>
+</div>
+<label for="satisfacao" data-translate="satisfactionRange">1 (muito insatisfeito) a 5 (muito satisfeito)</label><br>
 
         <label for="comentarios">Comentários adicionais:</label>
         <textarea id="comentarios" name="comentarios" rows="4" cols="50" placeholder="Deixe seu feedback sobre o site."></textarea><br>

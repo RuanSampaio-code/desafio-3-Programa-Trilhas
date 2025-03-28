@@ -153,3 +153,26 @@ body.dark-mode form button {
 body.dark-mode form button:hover {
     background-color: #e03e0f;
 }
+
+/* Estilo para o contêiner do slider */
+.slider-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Estilo para o indicador flutuante */
+.slider-value {
+    position: absolute;
+    top: -30px; /* Ajuste para posicionar acima do slider */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: left 0.2s ease, transform 0.2s ease;
+}
