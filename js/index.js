@@ -13,45 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         
         init() {
-            this.setupLanguageSelector();
-            this.setupDarkMode();
-        },
-
-        setupLanguageSelector() {
-            const languageSelect = document.getElementById('languageSelect');
-            languageSelect.addEventListener('change', () => {
-                this.updateTranslations(languageSelect.value);
-            });
-
-            // Definir o idioma inicial
-            this.updateTranslations(languageSelect.value);
-        },
-
-        updateTranslations(language) {
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                element.textContent = this.translations[language][key];
-            });
-        },
-
-        setupDarkMode() {
-            const toggleSwitch = document.getElementById('darkModeToggle');
-            const currentMode = localStorage.getItem('darkMode');
-
-            if (currentMode === 'enabled') {
-                document.body.classList.add('dark-mode');
-                toggleSwitch.checked = true;
-            }
-
-            toggleSwitch.addEventListener('change', () => {
-                if (toggleSwitch.checked) {
-                    document.body.classList.add('dark-mode');
-                    localStorage.setItem('darkMode', 'enabled');
-                } else {
-                    document.body.classList.remove('dark-mode');
-                    localStorage.setItem('darkMode', 'disabled');
-                }
-            });
+            // Reutiliza as funções globais
+            functionDarkMode();
+            functionLanguageSelector(this.translations);
         }
     };
 
