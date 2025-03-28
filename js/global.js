@@ -21,17 +21,40 @@ function functionDarkMode() {
 
 // Seleção de Idioma
 function functionLanguageSelector(translations) {
+    if (!translations) {
+        console.error('Objeto translations não encontrado.');
+        return;
+    }
+
     const languageSelect = document.getElementById('languageSelect');
+    const defaultLanguage = 'pt'; // Define o idioma padrão como 'pt'
+
+    if (!languageSelect) {
+        console.warn('Elemento #languageSelect não encontrado. Usando idioma padrão.');
+        updateTranslations(defaultLanguage, translations);
+        return;
+    }
+
     languageSelect.addEventListener('change', (event) => {
         updateTranslations(event.target.value, translations);
     });
-    updateTranslations(languageSelect.value, translations);
+
+    updateTranslations(languageSelect.value || defaultLanguage, translations);
 }
 
 function updateTranslations(language, translations) {
+    if (!translations[language]) {
+        console.error(`Traduções para o idioma "${language}" não encontradas.`);
+        return;
+    }
+
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
-        element.textContent = translations[language][key];
+        if (translations[language][key]) {
+            element.textContent = translations[language][key];
+        } else {
+            console.warn(`Tradução para a chave "${key}" não encontrada no idioma "${language}".`);
+        }
     });
 }
 
