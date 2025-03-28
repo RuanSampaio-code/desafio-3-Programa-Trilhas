@@ -136,3 +136,18 @@ body.dark-mode .btn {
 body.dark-mode .btn:hover {
     background-color: #555;
 }
+
+.dark-mode #sugestoes {
+    background-color: #333; /* Fundo escuro */
+    color: #fff; /* Texto claro */
+    border-color: #555;
+}
+
+.dark-mode .sugestao-item {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark-mode .sugestao-item:hover {
+    background-color: #555;
+}

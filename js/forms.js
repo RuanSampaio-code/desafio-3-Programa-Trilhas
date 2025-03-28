@@ -101,11 +101,13 @@ function functionDarkMode() {
     
     if (currentMode === 'enabled') {
         document.body.classList.add('dark-mode');
+        document.getElementById('sugestoes')?.classList.add('dark-mode'); // Aplica no #sugestoes se existir
         toggleSwitch.checked = true;
     }
 
     toggleSwitch.addEventListener('change', () => {
         document.body.classList.toggle('dark-mode', toggleSwitch.checked);
+        document.getElementById('sugestoes')?.classList.toggle('dark-mode', toggleSwitch.checked);
         localStorage.setItem('darkMode', toggleSwitch.checked ? 'enabled' : 'disabled');
     });
 }
