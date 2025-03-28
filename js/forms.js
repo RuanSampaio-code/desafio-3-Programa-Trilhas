@@ -94,39 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initCitySuggestions();
 });
 
-//Função para ativar o modo escuro
-function functionDarkMode() {
-    const toggleSwitch = document.getElementById('darkModeToggle');
-    const currentMode = localStorage.getItem('darkMode');
-
-    if (currentMode === 'enabled') {
-        document.body.classList.add('dark-mode');
-        document.getElementById('sugestoes')?.classList.add('dark-mode'); 
-        document.getElementById('errorModal')?.classList.add('dark-mode'); // Adiciona no modal
-        document.querySelector('.modal-content')?.classList.add('dark-mode'); // Conteúdo do modal
-        toggleSwitch.checked = true;
-    }
-
-    toggleSwitch.addEventListener('change', () => {
-        const isDark = toggleSwitch.checked;
-        document.body.classList.toggle('dark-mode', isDark);
-        document.getElementById('sugestoes')?.classList.toggle('dark-mode', isDark);
-        document.getElementById('errorModal')?.classList.toggle('dark-mode', isDark);
-        document.querySelector('.modal-content')?.classList.toggle('dark-mode', isDark);
-        localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-    });
-}
-
-
-//Função para selecionar o idioma
-function functionLanguageSelector(translations) {
-    const languageSelect = document.getElementById('languageSelect');
-    languageSelect.addEventListener('change', (event) => {
-        updateTranslations(event.target.value, translations);
-    });
-    updateTranslations(languageSelect.value, translations);
-}
-
 //Função para atualizar as traduções
 function updateTranslations(language, translations) {
     document.querySelectorAll('[data-translate]').forEach(element => {

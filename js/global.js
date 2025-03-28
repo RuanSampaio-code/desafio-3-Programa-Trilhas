@@ -1,5 +1,10 @@
 function functionDarkMode() {
     const toggleSwitch = document.getElementById('darkModeToggle');
+    if (!toggleSwitch) {
+        console.warn('Elemento #darkModeToggle não encontrado.');
+        return; // Sai da função se o elemento não existir
+    }
+
     const currentMode = localStorage.getItem('darkMode');
 
     if (currentMode === 'enabled') {
