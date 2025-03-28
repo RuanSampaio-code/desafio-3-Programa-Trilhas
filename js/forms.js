@@ -98,19 +98,25 @@ document.addEventListener('DOMContentLoaded', () => {
 function functionDarkMode() {
     const toggleSwitch = document.getElementById('darkModeToggle');
     const currentMode = localStorage.getItem('darkMode');
-    
+
     if (currentMode === 'enabled') {
         document.body.classList.add('dark-mode');
-        document.getElementById('sugestoes')?.classList.add('dark-mode'); // Aplica no #sugestoes se existir
+        document.getElementById('sugestoes')?.classList.add('dark-mode'); 
+        document.getElementById('errorModal')?.classList.add('dark-mode'); // Adiciona no modal
+        document.querySelector('.modal-content')?.classList.add('dark-mode'); // Conteúdo do modal
         toggleSwitch.checked = true;
     }
 
     toggleSwitch.addEventListener('change', () => {
-        document.body.classList.toggle('dark-mode', toggleSwitch.checked);
-        document.getElementById('sugestoes')?.classList.toggle('dark-mode', toggleSwitch.checked);
-        localStorage.setItem('darkMode', toggleSwitch.checked ? 'enabled' : 'disabled');
+        const isDark = toggleSwitch.checked;
+        document.body.classList.toggle('dark-mode', isDark);
+        document.getElementById('sugestoes')?.classList.toggle('dark-mode', isDark);
+        document.getElementById('errorModal')?.classList.toggle('dark-mode', isDark);
+        document.querySelector('.modal-content')?.classList.toggle('dark-mode', isDark);
+        localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
     });
 }
+
 
 //Função para selecionar o idioma
 function functionLanguageSelector(translations) {
