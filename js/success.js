@@ -5,60 +5,26 @@ document.addEventListener('DOMContentLoaded', () => {
             en: {
                 congratulations: "🎉 Congratulations!",
                 congratulations__register: "Congratulations! Your registration has been successful.",
-                congratulations__credit: "The Government of the State of Maranhão, through SECTI in partnership with FAPEMA, thanks you for your participation."
+                congratulations__credit: "The Government of the State of Maranhão, through SECTI in partnership with FAPEMA, thanks you for your participation.",
+                return__main: "Return to the main page",
+                questionary: "Feedback",
                 
             },
             pt: {
                 congratulations: "🎉 Parabéns!",
                 congratulations__register: "Parabéns! Sua inscrição foi realizada com sucesso",
-                congratulations__credit: "O Governo do Estado do Maranhão, por meio da SECTI em parceria com a FAPEMA, agradece sua participação."
+                congratulations__credit: "O Governo do Estado do Maranhão, por meio da SECTI em parceria com a FAPEMA, agradece sua participação.",
+                return__main: "Retornar para a página principal",
+                questionary: "Feedback",
                 
             }
         },
         
         init() {
-            this.setupLanguageSelector();
-            this.setupDarkMode();
+            functionDarkMode();
+            functionLanguageSelector(this.translations);
         },
-
-        setupLanguageSelector() {
-            const languageSelect = document.getElementById('languageSelect');
-            languageSelect.addEventListener('change', () => {
-                this.updateTranslations(languageSelect.value);
-            });
-
-            // Definir o idioma inicial
-            this.updateTranslations(languageSelect.value);
-        },
-
-        updateTranslations(language) {
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                element.textContent = this.translations[language][key];
-            });
-        },
-
-        setupDarkMode() {
-            const toggleSwitch = document.getElementById('darkModeToggle');
-            const body = document.body;
-            const currentMode = localStorage.getItem('darkMode');
-
-            if (currentMode === 'enabled') {
-                body.classList.add('dark-mode');
-                toggleSwitch.checked = true;
-            }
-
-            toggleSwitch.addEventListener('change', () => {
-                if (toggleSwitch.checked) {
-                    body.classList.add('dark-mode');
-                    localStorage.setItem('darkMode', 'enabled');
-                } else {
-                    body.classList.remove('dark-mode');
-                    localStorage.setItem('darkMode', 'enabled');
-                }
-            });
-        }
-    };
+        };
     App.init();
 });
 
