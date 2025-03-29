@@ -35,7 +35,8 @@ function functionFormValidation() {
             { id: 'rua', label: 'Rua' },
             { id: 'cidade', label: 'Cidade' },
             { id: 'estado', label: 'Estado' },
-            { id: 'comprovante', label: 'Comprovante de residência', type: 'file' } 
+            { id: 'comprovante', label: 'Comprovante de residência', type: 'file' },
+           
         ];
   
         let missingFields = [];

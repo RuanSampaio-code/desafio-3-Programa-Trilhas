@@ -25,11 +25,11 @@
     <form action="enviar-feedback.php" method="POST">
         <h1 class="text-center mb-4" data-translate="feedbackTitle">Feedback do Site</h1>
 
-        <label for="nome" data-translate="name">Nome:</label>
+       <!--  <label for="nome" data-translate="name">Nome:</label>
         <input type="text" id="nome" name="nome" required><br>
 
         <label for="email" data-translate="email">Email para contato:</label>
-        <input type="email" id="email" name="email" required><br>
+        <input type="email" id="email" name="email" required><br> -->
 
         <label for="velocidade" data-translate="siteSpeed">Como você avalia a velocidade do site?</label>
         <div class="radio-group">
@@ -68,7 +68,13 @@
         <label for="comentarios" data-translate="additionalComments">Comentários adicionais:</label>
         <textarea id="comentarios" name="comentarios" rows="4" cols="50" placeholder="Deixe seu feedback sobre o site." data-translate="commentsPlaceholder"></textarea><br>
 
-        <button type="submit" class="btn btn-primary w-100" data-translate="submitFeedback">Enviar Feedback</button>
+        <button type="submit" onclick="alertar()" class="btn btn-primary w-100" data-translate="submitFeedback">Enviar Feedback</button>
     </form>
+
+    <script>
+        function alertar() {
+            alert("Feedback enviado com sucesso!");
+        }
+    </script>
 </body>
 </html>
