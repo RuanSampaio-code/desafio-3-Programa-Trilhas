@@ -1,15 +1,4 @@
 /* Estilo geral */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
 
 /* Controles no topo */
 .position-absolute {
@@ -72,7 +61,7 @@ input:checked + .slider:before {
 form {
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 0 4px 3px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 100%;
     max-width: 500px;

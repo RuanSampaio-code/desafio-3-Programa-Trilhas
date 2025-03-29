@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
 //Função para validar o formulário
 function functionFormValidation() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex para validar e-mail
-  
+    const userRegex = /^[a-zA-Z0-9]{6,}$/; // ID do usuário: mínimo 6 caracteres alfanuméricos
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/; // Senha: mínimo 8 caracteres com letras e números
+
     document.querySelector('form').addEventListener('submit', (event) => {
         event.preventDefault();
   
@@ -32,13 +34,14 @@ function functionFormValidation() {
             { id: 'sexo', label: 'Sexo' },
             { id: 'documento', label: 'Documento de identidade', type: 'file' },
             { id: 'cep', label: 'CEP' },
-            { id: 'rua', label: 'Rua' },
+            /* { id: 'rua', label: 'Rua' },
             { id: 'cidade', label: 'Cidade' },
-            { id: 'estado', label: 'Estado' },
+            { id: 'estado', label: 'Estado' }, */
             { id: 'comprovante', label: 'Comprovante de residência', type: 'file' },
-           
+            { id: 'usuario', label: 'ID do Usuário' }, // Novo campo
+            { id: 'senha', label: 'Senha' } // Novo campo
         ];
-  
+        let invalidFields = []; // Array para armazenar mensagens de erro
         let missingFields = [];
         let invalidEmail = false;
         let formData = {};
@@ -47,13 +50,19 @@ function functionFormValidation() {
             const input = document.getElementById(field.id);
             const value = input.value.trim();
             
+            // Remover erro ao interagir com o campo
+            input.addEventListener('input', () => input.classList.remove('is-invalid'));
+            if (field.type === 'file') {
+                input.addEventListener('change', () => input.classList.remove('is-invalid'));
+            }
+
             // Validação geral dos campos obrigatórios
             if (value === '') {
                 missingFields.push(`<li>${field.label}</li>`);
                 input.classList.add('is-invalid');
             } else {
                 input.classList.remove('is-invalid');
-                formData[field.id] = value; // Save the value to formData
+                formData[field.id] = value; // Salva o valor no formData
             }
   
             // Validação específica para e-mail
@@ -62,6 +71,18 @@ function functionFormValidation() {
                     invalidEmail = true;
                     input.classList.add('is-invalid');
                 }
+            }
+
+            // Validação específica para ID do Usuário
+            if (field.id === 'usuario' && value !== '' && !userRegex.test(value)) {
+                invalidFields.push('<li>ID do Usuário inválido (mínimo 6 caracteres alfanuméricos)</li>');
+                input.classList.add('is-invalid');
+            }
+
+            // Validação específica para Senha
+            if (field.id === 'senha' && value !== '' && !passwordRegex.test(value)) {
+                invalidFields.push('<li>Senha inválida (mínimo 8 caracteres, incluindo letras e números)</li>');
+                input.classList.add('is-invalid');
             }
         });
 
@@ -102,7 +123,7 @@ function functionFormValidation() {
             document.getElementById('modalBody').innerHTML = errorMessage;
             new bootstrap.Modal(document.getElementById('errorModal')).show();
         } else {
-            // Save formData to LocalStorage
+            // Salvar formData no LocalStorage
             localStorage.setItem('formData', JSON.stringify(formData));
             window.location.href = 'success.html';
         }
