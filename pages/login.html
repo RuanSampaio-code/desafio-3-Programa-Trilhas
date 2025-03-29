@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Trilhas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/forms.css">
+
+    <script src="/js/forms.js" defer></script>
+    <script src="/js/global.js" defer></script>
+
+</head>
+<body >
+    <!-- Dark Mode e Idioma -->
+    <!-- <div class="position-absolute top-0 end-0 p-3">
+        <div class="d-flex gap-2">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="darkModeToggle">
+            </div>
+            <select class="form-select form-select-sm" id="languageSelect">
+                <option value="pt">PT</option>
+                <option value="en">EN</option>
+            </select>
+        </div>
+    </div> -->
+
+    <div class="position-absolute top-0 end-0 p-4 top-right-controls">
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle">
+          <span class="slider round"></span>
+        </label>
+        <select id="languageSelect" class="form-select form-select-sm">
+          <option value="pt">Português</option>
+          <option value="en">English</option>
+        </select>
+    </div>
+
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="card shadow-lg login-card">
+            <div class="card-body p-5">
+                <!-- Logo -->
+                <div class="text-center mb-5">
+                    <img src="/assets/logos/logo-trilhas-inova.png" alt="Logo Trilhas" class="img-fluid" style="max-width: 200px;">
+                </div>
+
+                <!-- Formulário de Login -->
+                <form id="loginForm">
+                    <!-- Usuário -->
+                    <div class="mb-4">
+                        <label for="usuario" class="form-label">ID do Usuário</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="usuario" 
+                                   placeholder="Digite seu ID"
+                                   required>
+                        </div>
+                        <div class="invalid-feedback">Por favor, digite seu ID de usuário</div>
+                    </div>
+
+                    <!-- Senha -->
+                    <div class="mb-4">
+                        <label for="senha" class="form-label">Senha</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                            <input type="password" 
+                                   class="form-control" 
+                                   id="senha" 
+                                   placeholder="Digite sua senha"
+                                   required>
+                            <button class="btn btn-outline-secondary toggle-password" type="button">
+                                <i class="bi bi-eye-slash"></i>
+                            </button>
+                        </div>
+                        <div class="invalid-feedback">Por favor, digite sua senha</div>
+                    </div>
+
+                    <!-- Botão de Login -->
+                    <button type="submit" class="btn btn-primary w-100 mb-3">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Entrar
+                    </button>
+
+                    <!-- Criar conta -->
+                    <div class="text-center">
+                        <a href="/pages/forms.html" class="text-decoration-none" data-translate="signUp">
+                            Criar conta
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script de Validação -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Toggle Password
+            document.querySelector('.toggle-password').addEventListener('click', function() {
+                const password = document.getElementById('senha');
+                const icon = this.querySelector('i');
+                
+                if (password.type === 'password') {
+                    password.type = 'text';
+                    icon.classList.replace('bi-eye-slash', 'bi-eye');
+                } else {
+                    password.type = 'password';
+                    icon.classList.replace('bi-eye', 'bi-eye-slash');
+                }
+            });
+
+            // Validação de Formulário
+            document.getElementById('loginForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const usuario = document.getElementById('usuario');
+                const senha = document.getElementById('senha');
+                let isValid = true;
+
+                // Validação simples
+                [usuario, senha].forEach(input => {
+                    if (input.value.trim() === '') {
+                        input.classList.add('is-invalid');
+                        isValid = false;
+                    } else {
+                        input.classList.remove('is-invalid');
+                    }
+                });
+
+                if (isValid) {
+                    // Simular login
+                    window.location.href = 'dashboard.html';
+                }
+            });
+
+            // Validação em Tempo Real
+            document.querySelectorAll('input').forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.value.trim() !== '') {
+                        this.classList.remove('is-invalid');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
