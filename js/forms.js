@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     //Inicilizas as funções
     functionDarkMode();
+    sincronizarCPFComUsuario("cpf", "usuario");
     functionLanguageSelector(translations);
     functionFormValidation();
     initCitySuggestions();
@@ -127,6 +128,15 @@ function functionFormValidation() {
             localStorage.setItem('formData', JSON.stringify(formData));
             window.location.href = 'success.html';
         }
+    });
+}
+
+function sincronizarCPFComUsuario(cpfId, usuarioId) {
+    const cpfInput = document.getElementById(cpfId);
+    const usuarioInput = document.getElementById(usuarioId);
+
+    cpfInput.addEventListener("input", function () {
+      usuarioInput.value = cpfInput.value;
     });
 }
 
