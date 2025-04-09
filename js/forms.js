@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Função para validar o formulário
 function functionFormValidation() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex para validar e-mail
-    const userRegex = /^[a-zA-Z0-9]{6,}$/; // ID do usuário: mínimo 6 caracteres alfanuméricos
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/; // Senha: mínimo 8 caracteres com letras e números
 
     document.querySelector('form').addEventListener('submit', (event) => {
@@ -70,12 +69,6 @@ function functionFormValidation() {
                     invalidEmail = true;
                     input.classList.add('is-invalid');
                 }
-            }
-
-            // Validação específica para ID do Usuário
-            if (field.id === 'usuario' && value !== '' && !userRegex.test(value)) {
-                invalidFields.push('<li>ID do Usuário inválido (mínimo 6 caracteres alfanuméricos)</li>');
-                input.classList.add('is-invalid');
             }
 
             // Validação específica para Senha
@@ -138,7 +131,7 @@ function sincronizarCPFComUsuario(cpfId, usuarioId) {
     const usuarioInput = document.getElementById(usuarioId);
 
     cpfInput.addEventListener("input", function () {
-      usuarioInput.value = cpfInput.value;
+        usuarioInput.value = cpfInput.value;
     });
 }
 
