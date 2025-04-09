@@ -48,27 +48,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Alternar imagem no modo escuro
     const toggleSwitch = document.getElementById('darkModeToggle');
-const loginLogo = document.getElementById('loginLogo');
+    const loginLogo = document.getElementById('loginLogo');
 
-const updateLogo = () => {
-    if (document.body.classList.contains('dark-mode')) {
-        loginLogo.src = '../assets/logos/logo-trilhas-inova.png'; // Imagem para o modo escuro
-    } else {
-        loginLogo.src = '../assets/logos/logo-trilhas-inova-light.png'; // Imagem para o modo claro
+    const updateLogo = () => {
+        if (document.body.classList.contains('dark-mode')) {
+            loginLogo.src = '../assets/logos/logo-trilhas-inova.png'; // Imagem para o modo escuro
+        } else {
+            loginLogo.src = '../assets/logos/logo-trilhas-inova-light.png'; // Imagem para o modo claro
+        }
+    };
+
+    // Inicializa o estado da imagem com base no modo atual
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        toggleSwitch.checked = true;
+        updateLogo();
     }
-};
 
-// Inicializa o estado da imagem com base no modo atual
-if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark-mode');
-    toggleSwitch.checked = true;
-    updateLogo();
-}
-
-// Alterna a imagem ao mudar o modo
-toggleSwitch.addEventListener('change', () => {
-    document.body.classList.toggle('dark-mode', toggleSwitch.checked);
-    localStorage.setItem('darkMode', toggleSwitch.checked ? 'enabled' : 'disabled');
-    updateLogo();
-});
+    // Alterna a imagem ao mudar o modo
+    toggleSwitch.addEventListener('change', () => {
+        document.body.classList.toggle('dark-mode', toggleSwitch.checked);
+        localStorage.setItem('darkMode', toggleSwitch.checked ? 'enabled' : 'disabled');
+        updateLogo();
+    });
 });
