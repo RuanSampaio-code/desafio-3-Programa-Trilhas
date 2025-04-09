@@ -1,8 +1,11 @@
-.position-absolute {
-    display:flex;
-    justify-content: arrows;
-    top:0;
-    right: 1%;
+body {
+    background:rgb(189, 218, 252);
+    color: #0479ff;
+}
+
+body.dark-mode {
+    background-color: #0e0958;
+    color: #ffffff;
 }
 
 .switch {
@@ -51,21 +54,15 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-.welcome-message {
-    color:#ffffff;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-    text-align: center;
-}
-
-.container{
+.top-right-controls {
+    z-index: 9999; 
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    gap: 10px; /* Espaçamento entre os elementos */
 }
+
+.alert-success{
+    background:rgb(255, 255, 255);
+    color:black
+}
+

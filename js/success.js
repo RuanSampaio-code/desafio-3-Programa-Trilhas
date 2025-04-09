@@ -1,12 +1,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
-    const App = { 
+    const App = {
         init() {
-            // Reutiliza as funções globais
             functionDarkMode();
             functionLanguageSelector(translations);
-        }
-    };
-
+        },
+        };
     App.init();
 });
+
+

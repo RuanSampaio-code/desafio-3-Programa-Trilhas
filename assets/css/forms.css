@@ -56,6 +56,126 @@ body.dark-mode {
     gap: 10px; /* Espaçamento entre os elementos */
 }
 
-.mb-4{
+.mb-4 {
     color: rgb(0, 0, 0);
+}
+
+/* Estilos para a lista de sugestões de cidades */
+#sugestoes {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+    display: none; /* Oculta a lista por padrão */
+}
+
+#sugestoes .sugestao-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#sugestoes .sugestao-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Estilos adicionais para melhorar a visualização */
+#sugestoes .sugestao-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#sugestoes .sugestao-item:hover {
+    background-color: #e9ecef;
+}
+
+#sugestoes .sugestao-item:active {
+    background-color: #dee2e6;
+}
+
+#sugestoes .sugestao-item:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+}
+
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #bbb;
+}
+
+body.dark-mode label {
+    color: white;
+}
+
+/* Estiliza o card do formulário */
+body.dark-mode .card {
+    background-color: #222;
+    border: 1px solid #444;
+}
+
+/* Botões */
+body.dark-mode .btn {
+    background-color: #444;
+    color: white;
+    border: 1px solid #666;
+}
+
+body.dark-mode .btn:hover {
+    background-color: #555;
+}
+
+.dark-mode #sugestoes {
+    background-color: #333; /* Fundo escuro */
+    color: #fff; /* Texto claro */
+    border-color: #555;
+}
+
+.dark-mode .sugestao-item {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark-mode .sugestao-item:hover {
+    background-color: #555;
+}
+
+.dark-mode .modal-content {
+    background-color: #333; /* Fundo escuro do modal */
+    color: #fff; /* Texto claro */
+}
+
+.dark-mode .modal-header, 
+.dark-mode .modal-footer {
+    background-color: #222;
+    border-color: #444;
+}
+
+.dark-mode .modal-body {
+    color: #ddd;
+}
+
+.dark-mode .btn-close {
+    filter: invert(1); /* Deixa o botão de fechar visível no modo escuro */
+}
+
+
+.file-uploaded {
+    border-color: #28a745 !important; /* Verde do Bootstrap */
+    border-style: solid !important;
+}
+.upload-success {
+    color: #28a745 !important;
 }

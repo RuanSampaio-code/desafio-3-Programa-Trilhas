@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title data-translate="feedbackTitle">Questionário</title>
+    <link rel="stylesheet" href="../assets/css/questionary.css">
+    <script src="../js/global-translations.js" defer></script>
+    <script src="../js/global.js" defer></script>
+    <script src="../js/questionary.js" defer></script>
+</head>
+<body>
+    <div class="position-absolute">
+        <!-- Botão de modo escuro -->
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider round"></span>
+        </label>
+        <!-- Seletor de idioma -->
+        <select id="languageSelect" class="form-select form-select-sm">
+            <option value="pt">Português</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        
+            <form action="enviar-feedback.php" method="POST">
+                <h1 class="text-center mb-4" data-translate="feedbackTitle">Feedback do Site</h1>
+    
+                <label for="velocidade" data-translate="siteSpeed">Como você avalia a velocidade do site?</label>
+                <div class="radio-group">
+                    <input type="radio" id="velocidade_ruim" name="velocidade" value="Ruim" required>
+                    <label for="velocidade_ruim" data-translate="bad">Ruim</label>
+
+                    <input type="radio" id="velocidade_regular" name="velocidade" value="Regular" required>
+                    <label for="velocidade_regular" data-translate="regular">Regular</label>
+
+                    <input type="radio" id="velocidade_boa" name="velocidade" value="Boa" required>
+                    <label for="velocidade_boa" data-translate="good">Boa</label>
+                
+                </div>
+    
+                <label for="usabilidade" data-translate="usability">Como você avalia a facilidade de uso do site?</label>
+                <div class="radio-group">
+
+                    <input type="radio" id="usabilidade_ruim" name="usabilidade" value="Ruim" required>
+                    <label for="usabilidade_ruim" data-translate="bad">Ruim</label>
+
+                    <input type="radio" id="usabilidade_regular" name="usabilidade" value="Regular" required>
+                    <label for="usabilidade_regular" data-translate="regular">Regular</label>
+    
+                    <input type="radio" id="usabilidade_boa" name="usabilidade" value="Boa" required>
+                    <label for="usabilidade_boa" data-translate="good">Boa</label>
+    
+                   
+                </div>
+    
+                <label for="problemas" data-translate="problems">Você encontrou algum problema durante a inscrição?</label>
+                <textarea id="problemas" name="problemas" rows="4" class="form-control" placeholder="Descreva o problema encontrado, se houver." data-translate="problemsPlaceholder"></textarea><br>
+    
+                <label for="satisfacao" data-translate="satisfaction">Qual é o seu nível de satisfação com o site?</label>
+                <div class="d-flex justify-content-between my-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="satisfacao_1" name="satisfacao" value="1" required>
+                        <label class="form-check-label" for="satisfacao_1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="satisfacao_2" name="satisfacao" value="2" required>
+                        <label class="form-check-label" for="satisfacao_2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="satisfacao_3" name="satisfacao" value="3" required>
+                        <label class="form-check-label" for="satisfacao_3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="satisfacao_4" name="satisfacao" value="4" required>
+                        <label class="form-check-label" for="satisfacao_4">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="satisfacao_5" name="satisfacao" value="5" required>
+                        <label class="form-check-label" for="satisfacao_5">5</label>
+                    </div>
+                </div>
+                <label for="satisfacao" data-translate="satisfactionRange">1 (muito insatisfeito) a 5 (muito satisfeito)</label><br>
+
+                <label for="comentarios" data-translate="additionalComments">Comentários adicionais:</label>
+                <textarea id="comentarios" name="comentarios" rows="4" class="form-control" placeholder="Deixe seu feedback sobre o site." data-translate="commentsPlaceholder"></textarea><br>
+    
+                <button type="submit" onclick="alertar()" class="btn btn-primary w-100" data-translate="submitFeedback">Enviar Feedback</button>
+            </form>
+       
+    </div>
+    
+
+    
+
+    <script>
+        function alertar() {
+            alert("Feedback enviado com sucesso!");
+        }
+    </script>
+</body>
+</html>
