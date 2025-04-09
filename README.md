@@ -57,7 +57,7 @@ Durante o desenvolvimento, diversas melhorias técnicas foram aplicadas para apr
 - 🔐 **Armazenamento e login:** Introdução de lógica básica de autenticação e persistência local.  
 
 ---
-## ✨ Como rodar o projeto localmen
+## ✨ Como rodar o projeto localmente
 
 ### ✅ 1. *Verifique os pré-requisitos*
 
