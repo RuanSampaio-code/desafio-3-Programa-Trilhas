@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     // Load form data from LocalStorage
     const savedFormData = JSON.parse(localStorage.getItem('formData'));
@@ -10,14 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    //Inicilizas as funções
+    // Inicializa as funções
     functionDarkMode();
     sincronizarCPFComUsuario("cpf", "usuario");
     functionLanguageSelector(translations);
     functionFormValidation();
     initCitySuggestions();
 });
-//Função para validar o formulário
+
+// Função para validar o formulário
 function functionFormValidation() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex para validar e-mail
     const userRegex = /^[a-zA-Z0-9]{6,}$/; // ID do usuário: mínimo 6 caracteres alfanuméricos
@@ -25,7 +25,7 @@ function functionFormValidation() {
 
     document.querySelector('form').addEventListener('submit', (event) => {
         event.preventDefault();
-  
+
         const requiredFields = [
             { id: 'nome', label: 'Nome completo' },
             { id: 'dataNascimento', label: 'Data de nascimento' },
@@ -35,22 +35,20 @@ function functionFormValidation() {
             { id: 'sexo', label: 'Sexo' },
             { id: 'documento', label: 'Documento de identidade', type: 'file' },
             { id: 'cep', label: 'CEP' },
-            /* { id: 'rua', label: 'Rua' },
-            { id: 'cidade', label: 'Cidade' },
-            { id: 'estado', label: 'Estado' }, */
             { id: 'comprovante', label: 'Comprovante de residência', type: 'file' },
             { id: 'usuario', label: 'ID do Usuário' }, // Novo campo
             { id: 'senha', label: 'Senha' } // Novo campo
         ];
+
         let invalidFields = []; // Array para armazenar mensagens de erro
         let missingFields = [];
         let invalidEmail = false;
         let formData = {};
-  
+
         requiredFields.forEach(field => {
             const input = document.getElementById(field.id);
             const value = input.value.trim();
-            
+
             // Remover erro ao interagir com o campo
             input.addEventListener('input', () => input.classList.remove('is-invalid'));
             if (field.type === 'file') {
@@ -65,7 +63,7 @@ function functionFormValidation() {
                 input.classList.remove('is-invalid');
                 formData[field.id] = value; // Salva o valor no formData
             }
-  
+
             // Validação específica para e-mail
             if (field.id === 'email' && value !== '') {
                 if (!emailRegex.test(value)) {
@@ -93,32 +91,36 @@ function functionFormValidation() {
         } else {
             formData['trilha'] = learningTrack.value; // Armazena a trilha escolhida
         }
-  
+
         // Validação dos termos
         const termsAccepted = document.getElementById('termos').checked;
         const termsError = !termsAccepted ? '<li>Aceite os termos e condições</li>' : '';
-  
+
         // Montagem da mensagem de erro
         let errorMessage = '';
-        if (missingFields.length > 0 || invalidEmail || !termsAccepted) {
+        if (missingFields.length > 0 || invalidFields.length > 0 || invalidEmail || !termsAccepted) {
             errorMessage += '<ul>';
-            
+
             if (missingFields.length > 0) {
                 errorMessage += `<p>Campos obrigatórios não preenchidos:</p>${missingFields.join('')}`;
             }
-            
+
+            if (invalidFields.length > 0) {
+                errorMessage += `<p>Erros de validação:</p>${invalidFields.join('')}`;
+            }
+
             if (invalidEmail) {
                 errorMessage += '<li>E-mail inválido</li>';
                 document.getElementById('email').classList.add('is-invalid');
             }
-            
+
             if (termsError) {
                 errorMessage += termsError;
             }
-            
+
             errorMessage += '</ul>';
         }
-  
+
         // Exibe o modal com os erros ou redireciona
         if (errorMessage) {
             document.getElementById('modalBody').innerHTML = errorMessage;
