@@ -57,15 +57,65 @@ Durante o desenvolvimento, diversas melhorias técnicas foram aplicadas para apr
 - 🔐 **Armazenamento e login:** Introdução de lógica básica de autenticação e persistência local.  
 
 ---
+## ✨ Como rodar o projeto localmen
 
-## 🔮 Próximos Passos e Evoluções
+### ✅ 1. *Verifique os pré-requisitos*
 
-- Implementação de um backend seguro para armazenar e manipular os dados  
-- Melhorias no design visual e na usabilidade  
-- Ampliação da acessibilidade do formulário para pessoas com deficiência  
-- Criação de um painel administrativo para visualizar e gerenciar inscrições  
+Você só precisa de:
+- Um *navegador web* (Chrome, Firefox, Edge etc.)
+- Um *editor de código* (VS Code, por exemplo)
+- [Opcional] Extensão *Live Server* para VS Code, para recarregar automaticamente ao salvar.
 
 ---
+
+### ✅ 2. *Clone o repositório do GitHub*
+
+Abra o terminal (ou o Git Bash no Windows) e execute:
+
+bash
+git clone [https://github.com/usuario/repositorio.git](https://github.com/RuanSampaio-code/desafio-3-Programa-Trilhas.git)
+
+---
+
+### ✅ 3. *Acesse a pasta do projeto*
+
+bash
+cd repositorio
+---
+
+### ✅ 4. *Verifique a estrutura*
+
+Procure por um arquivo index.html. Ele normalmente é a página inicial.
+
+---
+
+### ✅ 5. *Abra o projeto no navegador*
+
+#### Opção 1: Abrir manualmente
+- Vá até o arquivo index.html e *abra com o navegador* (botão direito > Abrir com).
+
+#### Opção 2: Usar Live Server no VS Code
+- Instale a extensão *Live Server* no VS Code.
+- Clique com o botão direito no index.html > *"Open with Live Server"*.
+
+---
+### ✅ 6. *Verifique se o Bootstrap está sendo carregado*
+
+No index.html, veja se existe algo assim:
+html
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+> Se sim, tudo está vindo via CDN e você não precisa instalar nada!
+
+---
+
+### ✅ Pronto! Agora você pode:
+- Editar os arquivos HTML/CSS
+- Ver as mudanças no navegador
+- Se quiser, colocar o projeto no GitHub Pages para deixar online
+
+
+
 
 ## 📬 Contato
 
