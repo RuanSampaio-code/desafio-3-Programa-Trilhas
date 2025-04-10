@@ -55,7 +55,16 @@ const translations = {
         zipCodeError: "Invalid ZIP Code",
         zipCodeFeedback: "Please enter a valid ZIP Code",
         welcomeMessage: "Welcome to the Trilhas program, an initiative by SECTI and FAPEMA to train young people and adults in the technology field.",
-        startRegistration: "Start Registration"
+        startRegistration: "Start Registration",
+        loginTitle: "Login - Trilhas",
+        userId: "User ID",
+        enterUserId: "Enter your User ID",
+        userIdError: "Please enter your User ID",
+        password: "Password",
+        enterPassword: "Enter your password",
+        passwordError: "Please enter your password",
+        loginButton: "Login",
+        signUp: "Create account"
     },
     pt: {
         congratulations: "Parabéns!",
@@ -95,7 +104,7 @@ const translations = {
         city: "Cidade",
         state: "Estado",
         residenceProof: "Comprovante de residência",
-        learningTracks: "Trilhas de apredizagem",
+        learningTracks: "Trilhas de aprendizagem",
         selectOneTrack: "Selecione apenas uma trilha",
         frontend: "Programação Front-end",
         backend: "Programação Back-end",
@@ -113,9 +122,15 @@ const translations = {
         return__main: "Retornar para a página principal",
         questionary: "Feedback",
         welcomeMessage: "Bem-vindo ao programa Trilhas, uma iniciativa da SECTI e FAPEMA para capacitar jovens e adultos na área de tecnologia.",
-        startRegistration: "Iniciar Inscrição"
-    },
+        startRegistration: "Iniciar Inscrição",
+        loginTitle: "Login - Trilhas",
+        userId: "ID do Usuário",
+        enterUserId: "Digite seu ID",
+        userIdError: "Por favor, digite seu ID de usuário",
+        password: "Senha",
+        enterPassword: "Digite sua senha",
+        passwordError: "Por favor, digite sua senha",
+        loginButton: "Entrar",
+        signUp: "Criar conta"
     }
-        
-
-
+};
