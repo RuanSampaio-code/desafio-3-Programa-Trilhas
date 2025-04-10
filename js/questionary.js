@@ -1,8 +1,7 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const App = {
         init() {
-            functionLanguageSelector(translations);
+            functionLanguageSelector(translations); // Ativa a tradução
             functionDarkMode();
             this.setupSatisfactionSlider();
         },
@@ -28,8 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
             // Atualizar ao carregar a página
             updateSliderValue();
-        
-            // Atualizar dinamicamente ao mover o slider
+
             inputSatisfacao.addEventListener("input", updateSliderValue);
         }
     };
@@ -39,12 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
 
     form.addEventListener('submit', (event) => {
-        event.preventDefault(); // Impede o envio padrão do formulário
+        event.preventDefault();
 
-        // Exibe o alerta
-        alert(App.translations[document.getElementById('languageSelect').value].congratulations);
+        // Obtém o idioma selecionado
+        const lang = document.getElementById('languageSelect').value;
 
-        // Redireciona para a página index.html
+        // Exibe a mensagem traduzida
+        const message = translations[lang]?.congratulations || "Feedback enviado com sucesso!";
+        alert(message);
+
+        // Redireciona para a página inicial
         window.location.href = '../index.html';
     });
 });
