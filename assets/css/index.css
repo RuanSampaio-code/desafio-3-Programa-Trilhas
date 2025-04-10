@@ -14,6 +14,11 @@
     margin-right: 10px; /* Espaçamento entre o switch e o seletor de linguagem */
 }
 
+#languageSelect{
+    z-index: 99999;
+   /* Espaçamento entre o switch e o seletor de linguagem */
+}
+
 .switch input {
     opacity: 0;
     width: 0;
