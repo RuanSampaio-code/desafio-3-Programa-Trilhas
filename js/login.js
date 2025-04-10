@@ -32,8 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (isValid) {
-            // Simular login
-            window.location.href = 'dashboard.html';
+            window.location.href = "/pages/home.html";
         }
     });
 
@@ -70,5 +69,33 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('dark-mode', toggleSwitch.checked);
         localStorage.setItem('darkMode', toggleSwitch.checked ? 'enabled' : 'disabled');
         updateLogo();
+    });
+
+    // Função de tradução
+    const languageSelect = document.getElementById('languageSelect');
+    const updateTranslations = (language) => {
+        document.querySelectorAll('[data-translate]').forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translations[language][key]) {
+                element.textContent = translations[language][key];
+            }
+        });
+
+        document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+            const key = element.getAttribute('data-translate-placeholder');
+            if (translations[language][key]) {
+                element.placeholder = translations[language][key];
+            }
+        });
+    };
+
+    // Inicializa a tradução com o idioma selecionado
+    const defaultLanguage = 'pt';
+    const currentLanguage = languageSelect.value || defaultLanguage;
+    updateTranslations(currentLanguage);
+
+    // Atualiza a tradução ao mudar o idioma
+    languageSelect.addEventListener('change', (event) => {
+        updateTranslations(event.target.value);
     });
 });

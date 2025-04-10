@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Trilhas</title>
+    <title data-translate="loginTitle">Login - Trilhas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/login.css">
     <link rel="stylesheet" href="/assets/css/global.css">
     <link rel="stylesheet" href="/assets/css/forms.css">
-
-    <script src="/js/forms.js" defer></script>
-    <script src="/js/global.js" defer></script>
     <script src="/js/login.js" defer></script>
-
+    <script src="/js/global-translations.js" defer></script>
 </head>
-<body >
+<body>
     <div class="position-absolute top-0 end-0 p-4 top-right-controls">
         <label class="switch">
           <input type="checkbox" id="darkModeToggle">
@@ -32,51 +29,53 @@
             <div class="card-body p-5">
                 <!-- Logo -->
                 <div class="text-center mb-5">
-                    <img id="loginLogo" src="../assets/logos/logo-trilhas-inova-light.png" alt="Logo Trilhas" class="img-fluid" style="max-width: 200px;">                </div>
+                    <img id="loginLogo" src="../assets/logos/logo-trilhas-inova-light.png" alt="Logo Trilhas" class="img-fluid" style="max-width: 200px;">
+                </div>
 
                 <!-- Formulário de Login -->
                 <form id="loginForm">
                     <!-- Usuário -->
                     <div class="mb-4">
-                        <label for="usuario" class="form-label">ID do Usuário</label>
+                        <label for="usuario" class="form-label" data-translate="userId">ID do Usuário</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
                             <input type="text" 
                                    class="form-control" 
                                    id="usuario" 
                                    placeholder="Digite seu ID"
+                                   data-translate-placeholder="enterUserId"
                                    required>
                         </div>
-                        <div class="invalid-feedback">Por favor, digite seu ID de usuário</div>
+                        <div class="invalid-feedback" data-translate="userIdError">Por favor, digite seu ID de usuário</div>
                     </div>
 
                     <!-- Senha -->
                     <div class="mb-4">
-                        <label for="senha" class="form-label">Senha</label>
+                        <label for="senha" class="form-label" data-translate="password">Senha</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
                             <input type="password" 
                                    class="form-control" 
                                    id="senha" 
                                    placeholder="Digite sua senha"
+                                   data-translate-placeholder="enterPassword"
                                    required>
                             <button class="btn btn-outline-secondary toggle-password" type="button">
                                 <i class="bi bi-eye-slash"></i>
                             </button>
                         </div>
-                        <div class="invalid-feedback">Por favor, digite sua senha</div>
+                        <div class="invalid-feedback" data-translate="passwordError">Por favor, digite sua senha</div>
                     </div>
 
                     <!-- Botão de Login -->
-                 
-                    <a  href="/pages/home.html"  class="btn btn-primary w-100 mb-3">
-                        <i  class="bi bi-box-arrow-in-right me-2"></i>Entrar
-                    </a>
-                   
+                    <button type="submit" class="btn btn-primary w-100 mb-3">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>
+                        <span data-translate="loginButton">Entrar</span>
+                    </button>
 
                     <!-- Criar conta -->
                     <div class="text-center">
-                        <a href="/pages/forms.html" class="text-decoration-none" data-translate="signUp">
+                        <a class="text-decoration-none" data-translate="signUp">
                             Criar conta
                         </a>
                     </div>
